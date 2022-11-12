@@ -212,6 +212,7 @@ export default {
                     console.log(data)
                     if (data.success == true) {
                         this.$emit("closebookingmodal")
+                        this.bookingModalBookStage = 0;
                     }
                 })
             }

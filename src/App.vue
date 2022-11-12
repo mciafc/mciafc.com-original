@@ -1,7 +1,7 @@
 <template>
   <div class="body" :class="{ noscroll: bookingModalOpen }" id="About" ref="about">
     <BookForm @closebookingmodal="closeBookingModal" :bookingModalOpenProp="bookingModalOpen"></BookForm>
-    <header class="header">
+    <header class="header unselectable">
       <ul>
         <li>
           <p><a href="/#About">About Us</a></p>
@@ -13,20 +13,20 @@
     </header>
     <div class="initialScreen">
       <div class="typographybg">
-        <h1 class="bigtypography">WHAT IS THE AFC?</h1>
+        <h1 class="bigtypography unselectable">WHAT IS THE AFC?</h1>
       </div>
-      <div class="aboutbox">
+      <div class="aboutbox selectable">
         <h1 class="clubname">AUDITORIUM FACILITIES CREW</h1>
         <br>
         <h2 class="gradient-text subheadingReposition">ABOUT US</h2>
-        <p class="clubinfo">The AFC is responsible for working the more technical parts of the auditorium. We help out with assemblies, extracurricular activities, and more by setting up the stage lights, speakers and other equipment. We have about 20 crew members, if you need us for your show, click the button below to book!</p>
+        <p class="clubinfo">The AFC is responsible for working the more technical parts of the auditorium. We help out with assemblies, extracurricular activities, and more by setting up the stage lights, speakers and other equipment. We have about 20 crew members, if you need us for your event, click the button below to book!</p>
         <br>
         <br>
         <br>
         <button class="applybtn" @click="openBookingModal">BOOK US</button>
       </div>
       <div class="backgroundimg">
-        <img src="https://picsum.photos/1280/720?random=1" class="backgroundimg">
+        <img src="./assets/board3.png" class="backgroundimg boardimgshift">
       </div>
       <div class="scrollReminder">
         <p>Scroll to see more</p>
@@ -34,18 +34,18 @@
     </div>
     <div class="secondScreen">
       <div class="typographybg2">
-        <h1 class="bigtypography2">TALENT SHOW SIGNUPS</h1>
+        <h1 class="bigtypography2 unselectable">TALENT SHOW SIGNUPS</h1>
       </div>
-      <div class="aboutbox2" id="Talent">
+      <div class="aboutbox2 selectable" id="Talent">
         <h1 class="clubname">TALENT SHOW REGISTRATION</h1>
         <br>
         <h2 class="gradient-text">DECEMBER 23</h2>
         <p class="clubinfo">Our normal Winter Assembly has been replaced with a Talent Show! Click the button below to
           audition for an act!</p>
-        <button class="applybtn2">GOT TALENT?</button>
+        <button class="applybtn">GOT TALENT?</button>
       </div>
       <div class="backgroundimg2">
-        <img src="https://picsum.photos/1280/720?random=2" class="backgroundimg">
+        <img src="./assets/drumkit.png" class="backgroundimg">
       </div>
     </div>
   </div>
@@ -82,6 +82,14 @@ export default {
         return document.documentElement.style.overflow = 'auto'
       }
     }   
+  },
+  mounted() {
+      document.querySelectorAll("*").forEach((elem) => {
+        elem.setAttribute('draggable', false)
+        elem.addEventListener('dragstart', (event) => {
+          event.preventDefault()
+        })
+      })
   }
 }
 </script>
@@ -100,6 +108,7 @@ button {
   font-size: 1.2rem;
   font-weight: 400;
   color: white;
+  max-width: fit-content;
   z-index: 100;
   box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.596);
   animation: reverse-gradient 1s forwards cubic-bezier(0.07, 0.5, 0.2, 1);
@@ -206,6 +215,22 @@ ul {
   overflow: hidden;
 }
 
+.unselectable {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.selectable {
+  -webkit-user-select: auto !important;
+  -webkit-touch-callout: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  user-select: auto !important;
+}
+
 .header {
   position: fixed;
   background-color: var(--mciafcblack);
@@ -237,12 +262,20 @@ body {
   width: 100%;
   height: 100%;
   margin: 0;
+  overflow: hidden;
 }
+
+/* .boardimgshift {
+  left: 200px;
+  overflow-x: hidden;
+  scale: 1.3
+} */
 
 .applybtn {
   position: absolute;
   margin: auto;
   left: 0;
+  max-width: fit-content;
   right: 0;
   bottom: 50px;
 }
