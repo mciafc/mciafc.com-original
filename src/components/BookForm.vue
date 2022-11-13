@@ -3,7 +3,7 @@
         <h1 v-if="bookingModalBookStage != 5">Book the AFC</h1>
         <p v-if="![2, 5].includes(bookingModalBookStage)">Fields marked with * are required. You'll be able to review your information before you submit.</p>
         <!-- Organizer Info -->
-        <div class="OrganizerInfo" v-if="bookingModalBookStage == 0">
+        <div class="OrganizerInfo booktext" v-if="bookingModalBookStage == 0">
             <h2>Organizer Information</h2>
             <p>Some information about you, so we can get in contact in case we need any extra details or you need to let us know
                 about changes.</p>
@@ -16,13 +16,13 @@
             <input type="text" name="Organizer Phone Number" ref="organizerPhoneNumber" placeholder="Organizer/Your Phone Number">
         </div>
         <!-- Organization Info -->
-        <div class="OrganizationInfo" v-if="bookingModalBookStage == 1">
+        <div class="OrganizationInfo booktext" v-if="bookingModalBookStage == 1">
             <h2>Organization Information</h2>
                 <h3>Organization Name*</h3>
                 <input type="text" name="Organization Name" ref="organizationName" placeholder="(e.g AFC, SAC, etc.)">
         </div>
         <!-- Event info -->
-        <div class="EventInfo" v-if="bookingModalBookStage == 2">
+        <div class="EventInfo booktext" v-if="bookingModalBookStage == 2">
             <h2>Event Information</h2>
             <h3>Event Name*</h3>
             <input type="text" name="Event Name" ref="eventNameRef" placeholder="(e.g Terry Fox Assembly)">
@@ -37,7 +37,7 @@
             <input type="text" name="Event Location" ref="eventLocation" placeholder="(e.g Cafeteria, Library, Gym)">
         </div>
         <!-- Crew Info -->
-        <div class="CrewInfo" v-if="bookingModalBookStage == 3">
+        <div class="CrewInfo booktext" v-if="bookingModalBookStage == 3">
             <h2>Crew Information</h2>
             <h3>Crew Members Needed</h3>
             <p>The amount of crew members needed, we have around 20 including 3 execs. Set to 0 for as many as possible.</p>
@@ -48,14 +48,14 @@
             <input type="checkbox" name="Paid Job" ref="paidJob">
         </div>
         <!-- Additional Info -->
-        <div class="AdditionalInfo" v-if="bookingModalBookStage == 4">
+        <div class="AdditionalInfo booktext" v-if="bookingModalBookStage == 4">
             <h2>Additional Information</h2>
             <p>Any additional information that you feel needs to be specified can go below.</p>
             <textarea name="Additional Info" ref="additionalInfo"
                 placeholder="(e.g Sound equipment should be set up at the back of the auditorium), other useful things to put here are the types of equipment we will need, we've got plenty so just let us know and we'll get back and let you know if we have it."></textarea>
         </div>
         <!-- Verify -->
-        <div class="verifyInfo" v-if="bookingModalBookStage == 5">
+        <div class="verifyInfo booktext" v-if="bookingModalBookStage == 5">
             <h1>Verify your Info:</h1>
             <p>Click any of the headings to go back and edit</p>
             <h3 style="text-decoration: underline; cursor: pointer;" @click="startReview(0)">Organizer Info</h3>
@@ -70,8 +70,7 @@
             <h3 style="text-decoration: underline; cursor: pointer;" @click="startReview(3)">Crew Info</h3>
             <p>Crew Members Needed: {{ employeesNeeded(crewMembersNeeded) }}</p>
             <p>Paid Job: {{ paidJob }}</p>
-            <h3 style="text-decoration: underline; cursor: pointer;" @click="startReview(4)" v-if="additionalInfo != 'No additional details specified.'">Additional Info</h3>
-            <p v-if="additionalInfo != 'No additional details specified.'">{{ additionalInfo }}</p>
+            <h3 style="text-decoration: underline; cursor: pointer;" @click="startReview(4)" v-if="additionalInfo != 'No additional details specified.'">Additional Info (Click to show)</h3>
         </div>
         <br>
         <button class="continuebutton" @click="nextModalPage" v-if="!reviewMode" ref="continuebutton">Continue</button>
@@ -330,19 +329,53 @@ export default {
 
 <style scoped>
 
+    @keyframes blur {
+      0% {
+        backdrop-filter: blur(0px);
+      }
+
+      100% {
+        backdrop-filter: blur(8px);
+      }
+    }
+
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* @keyframes fade-out {
+      0% {
+        opacity: 1;
+      }
+  
+      100% {
+        opacity: 0;
+      }
+    } */
+
     input {
         padding: 10px;
-        font-size: 15px;
+        font-size: 13px;
+        border-radius: 0.5rem;
     }
     textarea {
         padding: 10px;
-        font-size: 15px;
+        font-size: 13px;
         resize: none;
         height: 200px;
-        width: 80%
+        width: 80%;
     }
 
     .bookModal {
+        box-shadow:.8rem .8rem 1.4rem #141414, 
+                   -.2rem -.2rem 1.8rem #272727;
+        animation: fade-in 300ms forwards ease-out;
         position: absolute;
         margin: auto;
         left: 0;
@@ -350,24 +383,31 @@ export default {
         top: 0;
         bottom: 0;
         text-align: center;
-        height: 800px;
-        width: 600px;
+        height: 750px;
+        width: 400px;
         background-color: #191919;
-        font-size: 19px;
+        font-size: 16px;
         z-index: 20000000;
-        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
-        padding: 15px;
-        border-radius: 1rem;
+        padding: 20px;
+        padding-left: 75px;
+        padding-right: 75px;
+        border-radius: 3rem;
         overflow: hidden;
     }
 
+    .booktext {
+        position: relative;
+        margin-top: auto;
+        line-height: 0.9;
+    }
 
     .darkenbackground {
         z-index: 10000;
         width: 100%;
         height: 100%;
-        background-color: #000000;
-        opacity: 0.6;
+        background-color: #19191980;
+        animation: blur 300ms forwards ease-out;
+        opacity: 1;
         position: absolute;
         margin: 0;
         top: 0;
@@ -390,13 +430,13 @@ export default {
         margin: auto;
         left: 0;
         right: 0;
-        bottom: 40px;
+        bottom: 20px;
     }
     .fieldCheckText {
         position: absolute;
         margin: auto;
         left: 0;
         right: 0;
-        bottom: 20px;
+        bottom: 120px;
     }
 </style>
