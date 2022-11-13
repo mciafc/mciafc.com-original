@@ -400,7 +400,7 @@ body {
   line-height: 1;
   opacity: 0.9;
   padding-left: 50%;
-  text-shadow: 10px 5px 1px rgba(255, 255, 255);
+  text-shadow: 10px 5px 2px rgba(255, 255, 255);
 }
 
 .typographybg {
@@ -473,7 +473,7 @@ body {
   line-height: 1;
   opacity: 0.9;
   padding-right: 40%;
-  text-shadow: 10px 5px 1px rgba(255, 255, 255);
+  text-shadow: 10px 5px 2px rgba(255, 255, 255);
 }
 
 .typographybg2 {

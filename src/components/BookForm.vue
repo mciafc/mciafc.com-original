@@ -373,7 +373,7 @@ export default {
     }
 
     .bookModal {
-        box-shadow:.8rem .8rem 1.4rem #141414, 
+        box-shadow:.8rem .8rem 1.4rem #151515, 
                    -.2rem -.2rem 1.8rem #272727;
         animation: fade-in 300ms forwards ease-out;
         position: absolute;
