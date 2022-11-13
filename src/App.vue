@@ -76,7 +76,7 @@ export default {
       if (this.bookingModalOpen) {
         return document.documentElement.style.overflow = 'hidden'
       } else {
-        return document.documentElement.style.overflow = 'auto'
+        return [document.documentElement.style.overflow = 'auto', document.documentElement.style.overflowX = 'hidden']
       }
     }   
   },
