@@ -8,50 +8,50 @@
             <p>Some information about you, so we can get in contact in case we need any extra details or you need to let us know
                 about changes.</p>
             <h3>Name*</h3>
-            <input type="text" name="Organizer Name" ref="organizerName" placeholder="Organizer/Your Name">
+            <input type="text" name="Organizer Name" ref="organizerName" placeholder="Organizer/Your Name" :value="this.organizerName">
             <h3>Email*</h3>
-            <input type="text" name="Organizer Email" ref="organizerEmail" placeholder="Organizer/Your Email">
+            <input type="text" name="Organizer Email" ref="organizerEmail" placeholder="Organizer/Your Email" :value="this.organizerEmail">
             <h3>Phone Number</h3>
             <p>We only call or text if it's really needed.</p>
-            <input type="text" name="Organizer Phone Number" ref="organizerPhoneNumber" placeholder="Organizer/Your Phone Number">
+            <input type="text" name="Organizer Phone Number" ref="organizerPhoneNumber" placeholder="Organizer/Your Phone Number" :value="this.organizerPhoneNumber">
         </div>
         <!-- Organization Info -->
         <div class="OrganizationInfo booktext" v-if="bookingModalBookStage == 1">
             <h2>Organization Information</h2>
                 <h3>Organization Name*</h3>
-                <input type="text" name="Organization Name" ref="organizationName" placeholder="(e.g AFC, SAC, etc.)">
+                <input type="text" name="Organization Name" ref="organizationName" placeholder="(e.g AFC, SAC, etc.)" :value="this.organizationName">
         </div>
         <!-- Event info -->
         <div class="EventInfo booktext" v-if="bookingModalBookStage == 2">
             <h2>Event Information</h2>
             <h3>Event Name*</h3>
-            <input type="text" name="Event Name" ref="eventNameRef" placeholder="(e.g Terry Fox Assembly)">
+            <input type="text" name="Event Name" ref="eventNameRef" placeholder="(e.g Terry Fox Assembly)" :value="this.eventName">
             <h3>Event Start*</h3>
             <p>This should not include the time we will use to setup.</p>
-            <input type="datetime-local" name="Event Start Date" ref="eventStartDate" class="dateselect">
+            <input type="datetime-local" name="Event Start Date" ref="eventStartDate" class="dateselect" :value="this.eventStartDate">
             <h3>Event End*</h3>
             <p>This should not include the time we will use for teardown.</p>
-            <input type="datetime-local" name="Event End Date" ref="eventEndDate" class="dateselect">
+            <input type="datetime-local" name="Event End Date" ref="eventEndDate" class="dateselect" :value="this.eventEndDate">
             <h3>Event Location</h3>
             <p>Where your event is being held at.</p>
-            <input type="text" name="Event Location" ref="eventLocation" placeholder="(e.g Cafeteria, Library, Gym)">
+            <input type="text" name="Event Location" ref="eventLocation" placeholder="(e.g Cafeteria, Library, Gym)" :value="this.eventLocation">
         </div>
         <!-- Crew Info -->
         <div class="CrewInfo booktext" v-if="bookingModalBookStage == 3">
             <h2>Crew Information</h2>
             <h3>Crew Members Needed</h3>
             <p>The amount of crew members needed, we have around 20 including 3 execs. Set to 0 for as many as possible.</p>
-            <input type="number" name="CrewMembersNeeded" max="21" min="0" value="0" ref="crewMembersNeeded">
+            <input type="number" name="CrewMembersNeeded" max="21" min="0" :value="this.crewMembersNeeded" ref="crewMembersNeeded">
             <h3>Paid Job</h3>
             <p>Tick the box if the crew members that will be present will be getting paid for their work. If you're an in-school
                 organization, you should probably leave the box unticked.</p>
-            <input type="checkbox" name="Paid Job" ref="paidJob">
+            <input type="checkbox" name="Paid Job" ref="paidJob" :checked="this.paidJob">
         </div>
         <!-- Additional Info -->
         <div class="AdditionalInfo booktext" v-if="bookingModalBookStage == 4">
             <h2>Additional Information</h2>
             <p>Any additional information that you feel needs to be specified can go below.</p>
-            <textarea name="Additional Info" ref="additionalInfo"
+            <textarea name="Additional Info" ref="additionalInfo" :value="this.additionalInfo"
                 placeholder="(e.g Sound equipment should be set up at the back of the auditorium), other useful things to put here are the types of equipment we will need, we've got plenty so just let us know and we'll get back and let you know if we have it."></textarea>
         </div>
         <!-- Verify -->
@@ -70,7 +70,7 @@
             <h3 style="text-decoration: underline; cursor: pointer;" @click="startReview(3)">Crew Info</h3>
             <p>Crew Members Needed: {{ employeesNeeded(crewMembersNeeded) }}</p>
             <p>Paid Job: {{ paidJob }}</p>
-            <h3 style="text-decoration: underline; cursor: pointer;" @click="startReview(4)" v-if="additionalInfo != 'No additional details specified.'">Additional Info (Click to show)</h3>
+            <h3 style="text-decoration: underline; cursor: pointer;" @click="startReview(4)">Additional Info (Click to show)</h3>
         </div>
         <br>
         <button class="continuebutton" @click="nextModalPage" v-if="!reviewMode" ref="continuebutton">Continue</button>
@@ -114,7 +114,7 @@ export default {
             eventLocation: "", // partially required, defaults to MCI Auditorium if left blank 
 
             // Crew information (Just extra info for us)
-            membersNeeded: 0, // partially required, if left at 0 will show in the dashboard as "As many as possible"
+            crewMembersNeeded: 0, // partially required, if left at 0 will show in the dashboard as "As many as possible"
             paidJob: false, // only usually paid by outside of school organizations like epo
 
             // Additional Info (big body of text)
@@ -133,7 +133,7 @@ export default {
             let data = newGig
             console.log(data)
             if (data.success == true) {
-                this.modalCloseAnimation()
+                this.$emit('closebookingmodal')
                 this.bookingModalBookStage = 0;
             }
         })
