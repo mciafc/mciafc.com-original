@@ -135,6 +135,19 @@ export default {
             if (data.success == true) {
                 this.$emit('closebookingmodal')
                 this.bookingModalBookStage = 0;
+
+                // Reset data
+                this.organizerName = ""
+                this.organizerEmail = ""
+                this.organizerPhoneNumber = ""
+                this.organizationName = ""
+                this.eventName = ""
+                this.eventStartDate = undefined
+                this.eventEndDate = undefined
+                this.eventLocation = ""
+                this.crewMembersNeeded = 0
+                this.paidJob = false
+                this.additionalInfo = ""
             }
         })
     },
@@ -221,6 +234,7 @@ export default {
                     "organizerContactNumber": this.organizerPhoneNumber,
                     "organizationName": this.organizationName,
                     "gigName": this.eventName,
+                    "gigLocation": this.eventLocation,
                     "gigStartDate": this.eventStartDate,
                     "gigEndDate": this.eventEndDate,
                     "registeredByOrganizer": true,
