@@ -82,6 +82,8 @@
 </template>
 
 <script>
+import io from "socket.io-client";
+
 export default {
     name: 'BookForm',
     data() {
@@ -92,6 +94,9 @@ export default {
             requiredFieldCheckFailed: false,
             reviewMode: false,
             modalScrollEnabled: false,
+
+            // Socketio managers
+            socket: {},
 
             // Booking Info
             // Organizer Info (Contact Info Stuff)
@@ -120,6 +125,19 @@ export default {
         bookingModalOpenProp: Boolean
     },
     emits: ['closebookingmodal'],
+    created() {
+        this.socket = io("https://io.mciafc.com/gigs")
+    },
+    mounted() {
+        this.socket.on("newGigRegistered", (newGig) => {
+            let data = newGig
+            console.log(data)
+            if (data.success == true) {
+                this.$emit("closebookingmodal")
+                this.bookingModalBookStage = 0;
+            }
+        })
+    },
     methods: {
         nextModalPage() {
             if (this.bookingModalBookStage === 0) {
@@ -202,18 +220,20 @@ export default {
                     "paidJob": this.paidJob,
                     "additionalInformation": this.additionalInfo
                 }
-                fetch("https://api.mciafc.com/gigs/schedule", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(body)
-                }).then(res => res.json())
-                .then(data => {
-                    console.log(data)
-                    if (data.success == true) {
-                        this.$emit("closebookingmodal")
-                        this.bookingModalBookStage = 0;
-                    }
-                })
+                this.socket.emit("post", body)
+
+                // fetch("https://api.mciafc.com/gigs/schedule", {
+                //     method: "POST",
+                //     headers: { "Content-Type": "application/json" },
+                //     body: JSON.stringify(body)
+                // }).then(res => res.json())
+                // .then(data => {
+                //     console.log(data)
+                //     if (data.success == true) {
+                //         this.$emit("closebookingmodal")
+                //         this.bookingModalBookStage = 0;
+                //     }
+                // })
             }
         },
         startReview(page) {
