@@ -207,6 +207,7 @@ a:visited {
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
 }
 
 
