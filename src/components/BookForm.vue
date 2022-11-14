@@ -78,7 +78,7 @@
         <p style="color: red;" v-if="requiredFieldCheckFailed" class="fieldCheckText" ref="fieldCheckText">Please fill out all required fields</p>
         <p class="pagenumber">Page {{ bookingModalBookStage + 1 }} / 6</p>
     </div>
-    <div class="darkenbackground" v-if="bookingModalOpenProp" @click="this.$emit('closebookingmodal')" :class="{ noscroll: bookingModalOpenProp }"></div>
+    <div class="darkenbackground" ref="darkenbackground" v-if="bookingModalOpenProp" @click="closeModalAnimation" :class="{ noscroll: bookingModalOpenProp }"></div>
 </template>
 
 <script>
@@ -133,12 +133,20 @@ export default {
             let data = newGig
             console.log(data)
             if (data.success == true) {
-                this.$emit("closebookingmodal")
+                this.modalCloseAnimation()
                 this.bookingModalBookStage = 0;
             }
         })
     },
     methods: {
+        closeModalAnimation() {
+            this.$refs.bookModal.classList.add('fade-out')
+            this.$refs.darkenbackground.classList.add('unblur')
+            setTimeout(this.closeModalEvent, 100)
+        },
+        closeModalEvent() {
+            this.$emit('closebookingmodal')
+        },
         nextModalPage() {
             if (this.bookingModalBookStage === 0) {
                 this.organizerName = this.$refs.organizerName.value
@@ -348,8 +356,7 @@ export default {
 </script>
 
 <style scoped>
-
-    @keyframes blur {
+@keyframes blur {
       0% {
         backdrop-filter: blur(0px);
       }
@@ -369,15 +376,33 @@ export default {
       }
     }
 
-    /* @keyframes fade-out {
-      0% {
+@keyframes unblur {
+    0% {
+        backdrop-filter: blur(8px);
+    }
+
+    100% {
+        backdrop-filter: blur(0px);
+    }
+}
+
+@keyframes fade-out {
+    0% {
         opacity: 1;
-      }
-  
-      100% {
+    }
+
+    100% {
         opacity: 0;
-      }
-    } */
+    }
+}
+
+    .fade-out {
+        animation: fade-out 100ms forwards ease-out !important;
+    }
+
+    .unblur {
+        animation: unblur 100ms forwards ease-out !important;
+    }
 
     input {
         padding: 10px;
