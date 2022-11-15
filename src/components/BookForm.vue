@@ -370,7 +370,7 @@ export default {
 </script>
 
 <style scoped>
-@keyframes blur {
+    @keyframes blur {
       0% {
         backdrop-filter: blur(0px);
       }
@@ -390,25 +390,25 @@ export default {
       }
     }
 
-@keyframes unblur {
-    0% {
-        backdrop-filter: blur(8px);
+    @keyframes unblur {
+        0% {
+            backdrop-filter: blur(8px);
+        }
+
+        100% {
+            backdrop-filter: blur(0px);
+        }
     }
 
-    100% {
-        backdrop-filter: blur(0px);
-    }
-}
+    @keyframes fade-out {
+        0% {
+            opacity: 1;
+        }
 
-@keyframes fade-out {
-    0% {
-        opacity: 1;
+        100% {
+            opacity: 0;
+        }
     }
-
-    100% {
-        opacity: 0;
-    }
-}
 
     .fade-out {
         animation: fade-out 100ms forwards ease-out !important;
@@ -419,7 +419,8 @@ export default {
     }
 
     input {
-        padding: 10px;
+        font-family: "Poppins", sans-serif;
+        padding: 7px;
         font-size: 13px;
         border-radius: 0.5rem;
     }
@@ -433,7 +434,7 @@ export default {
 
     .bookModal {
         box-shadow:.8rem .8rem 1.4rem #151515, 
-                   -.2rem -.2rem 1.8rem #272727;
+                   -.2rem -.2rem 1.8rem #222222;
         animation: fade-in 300ms forwards ease-out;
         position: absolute;
         margin: auto;
@@ -465,7 +466,7 @@ export default {
         width: 100%;
         height: 100%;
         background-color: #19191980;
-        animation: blur 300ms forwards ease-out;
+        animation: blur 200ms forwards ease-out;
         opacity: 1;
         position: absolute;
         margin: 0;
@@ -484,6 +485,7 @@ export default {
         right: 0;
         bottom: 80px;
     }
+
     .pagenumber {
         position: absolute;
         margin: auto;
@@ -491,6 +493,7 @@ export default {
         right: 0;
         bottom: 20px;
     }
+
     .fieldCheckText {
         position: absolute;
         margin: auto;
