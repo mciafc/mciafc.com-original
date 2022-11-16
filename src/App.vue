@@ -32,7 +32,7 @@
     </div>
     <div class="secondScreen">
       <div class="typographybg2">
-        <h1 class="bigtypography2">TALENT SHOW SIGNUPS</h1>
+        <h1 class="bigtypography2 unselectable">TALENT SHOW SIGNUPS</h1>
       </div>
       <div class="aboutbox2 selectable" id="Talent">
         <h1 class="clubname">TALENT SHOW REGISTRATION</h1>
