@@ -1,6 +1,7 @@
 <template>
   <div class="body" :class="{ noscroll: bookingModalOpen }" id="About" ref="about">
     <BookForm @closebookingmodal="closeBookingModal" :bookingModalOpenProp="bookingModalOpen"></BookForm>
+    <InfoModal @closeinfomodal="closeInfoModal" :infoModalOpenProp="infoModalData.open" :headerProp="infoModalData.header" :textProp="infoModalData.text" />
     <header class="header unselectable">
       <ul>
         <li>
@@ -39,7 +40,7 @@
         <h2 class="gradient-text subheading2">December 23rd</h2>
         <p class="clubinfo">Our normal Winter Assembly has been replaced with a Talent Show! Click the button below to
           audition for an act!</p>
-        <button class="applybtn">GOT TALENT?</button>
+        <button class="applybtn" @click="comingSoon">GOT TALENT?</button>
       </div>
       <div class="backgroundimg2">
         <img src="./assets/drumkit.png" class="backgroundimg">
@@ -50,35 +51,53 @@
 
 <script>
 import BookForm from "./components/BookForm.vue"
+import InfoModal from "./components/InfoModal.vue"
 
 export default {
   name: 'App',
   components: {
-    BookForm
+    BookForm,
+    InfoModal
   },
   data() {
     return {
-      bookingModalOpen: false
+      bookingModalOpen: false,
+      infoModalData: {},
+      preventScrolling: false,
     }
   },
   methods: {
     openBookingModal() {
       window.location.href = "#About"
       this.bookingModalOpen = true
+      this.preventScrolling = true
     },
     closeBookingModal() {
       window.location.href = "#"
-      this.bookingModalOpen = false; 
-    }
+      this.bookingModalOpen = false;
+      this.preventScrolling = false
+    },
+    comingSoon() {
+      window.location.href = "#Talent"
+      this.infoModalData.open = true
+      this.preventScrolling = true
+      this.infoModalData.header = "COMING SOON"
+      this.infoModalData.text = "We're currently putting some finishing touches on the signups for talent show. Please check back in a few hours."
+    },
+    closeInfoModal() {
+      window.location.href = "#Talent"
+      this.infoModalData.open = false;
+      this.preventScrolling = false
+    },
   }, 
   watch: {
-    bookingModalOpen: function() {
-      if (this.bookingModalOpen) {
+    preventScrolling: function() {
+      if (this.preventScrolling) {
         return document.documentElement.style.overflow = 'hidden'
       } else {
         return [document.documentElement.style.overflow = 'auto', document.documentElement.style.overflowX = 'hidden']
       }
-    }   
+    },    
   },
   mounted() {
       document.querySelectorAll("*").forEach((elem) => {
