@@ -25,7 +25,7 @@
         <div class="EventInfo booktext" v-if="bookingModalBookStage == 2">
             <h2>Event Information</h2>
             <h3>Event Name*</h3>
-            <input type="text" name="Event Name" ref="eventNameRef" placeholder="(e.g Terry Fox Assembly)" :value="this.eventName">
+            <input type="text" name="Event Name" ref="eventNameRef" placeholder="(e.g Terry Fox Assembly, Your Play, etc.)" :value="this.eventName">
             <h3>Event Start*</h3>
             <p>This should not include the time we will use to setup.</p>
             <input type="datetime-local" name="Event Start Date" ref="eventStartDate" class="dateselect" :value="this.eventStartDate">
@@ -33,8 +33,8 @@
             <p>This should not include the time we will use for teardown.</p>
             <input type="datetime-local" name="Event End Date" ref="eventEndDate" class="dateselect" :value="this.eventEndDate">
             <h3>Event Location</h3>
-            <p>Where your event is being held at.</p>
-            <input type="text" name="Event Location" ref="eventLocation" placeholder="(e.g Cafeteria, Library, Gym)" :value="this.eventLocation">
+            <p>Where your event is being held at. Defaults to the Auditorium</p>
+            <input type="text" name="Event Location" ref="eventLocation" placeholder="(e.g Auditorium, Cafeteria, Gym)" :value="this.eventLocation">
         </div>
         <!-- Crew Info -->
         <div class="CrewInfo booktext" v-if="bookingModalBookStage == 3">
@@ -436,7 +436,7 @@ export default {
         box-shadow:.8rem .8rem 1.4rem #151515, 
                    -.2rem -.2rem 1.8rem #222222;
         animation: fade-in 300ms forwards ease-out;
-        position: absolute;
+        position: fixed;
         margin: auto;
         left: 0;
         right: 0;
@@ -468,7 +468,7 @@ export default {
         background-color: #19191980;
         animation: blur 200ms forwards ease-out;
         opacity: 1;
-        position: absolute;
+        position: fixed;
         margin: 0;
         top: 0;
         left: 0;

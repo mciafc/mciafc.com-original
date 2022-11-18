@@ -4,12 +4,17 @@
     <InfoModal @closeinfomodal="closeInfoModal" :infoModalOpenProp="infoModalData.open" :headerProp="infoModalData.header" :textProp="infoModalData.text" />
     <header class="header unselectable">
       <ul>
-        <li>
-          <p><a class="about" href="/#About">About Us</a></p>
-        </li>
-        <li>
-          <p><a class="talent" href="/#Talent">Talent Show</a></p>
-        </li>
+        <div class="navbox">
+          <li>
+            <p><a class="about" href="/#About">About Us</a></p>
+          </li>
+          <li>
+            <p><a class="talent" href="/#Talent">Talent Show</a></p>
+          </li>
+          <li>
+            <p><a class="book" href="/#Book">Book Us</a></p>
+          </li>
+        </div>
       </ul>
     </header>
     <div class="initialScreen">
@@ -20,8 +25,8 @@
         <h1 class="clubname">AUDITORIUM FACILITIES CREW</h1>
         <br>
         <h2 class="gradient-text subheading">ABOUT US</h2>
-        <p class="clubinfo">The AFC is responsible for working the more technical parts of the MCI auditorium. We help out with assemblies, extracurricular activities, and more by setting up the stage lights, speakers and other equipment. We have around amazing 20 crew members. If you need us for your event, click the button below to book!</p>
-        <button class="applybtn" @click="openBookingModal">BOOK US</button>
+        <p class="clubinfo">The AFC is responsible for working the more technical parts of the MCI auditorium. We help out with assemblies, extracurricular activities, and more by setting up the stage lights, speakers and other equipment. We have around 20 amazing crew members. Click the button below to view more detailed information such as auditorium specifications.</p>
+        <button class="applybtn" @click="openInfoModal('COMING SOON', `We're currently putting some finishing touches on the signups for talent show. Please check back in a few hours.`)">MORE INFO</button>
       </div>
       <div class="backgroundimg">
         <img src="./assets/board3.png" class="backgroundimg boardimgshift">
@@ -30,20 +35,35 @@
         <p>Scroll to see more</p>
       </div>
     </div>
-    <div class="secondScreen">
+    <div class="secondScreen" id="Talent">
       <div class="typographybg2">
         <h1 class="bigtypography2 unselectable">TALENT SHOW SIGNUPS</h1>
       </div>
-      <div class="aboutbox2 selectable" id="Talent">
+      <div class="aboutbox2 selectable">
         <h1 class="clubname">TALENT SHOW REGISTRATION</h1>
         <br>
         <h2 class="gradient-text subheading2">December 23rd</h2>
         <p class="clubinfo">Our normal Winter Assembly has been replaced with a Talent Show! Click the button below to
           audition for an act!</p>
-        <button class="applybtn" @click="comingSoon">GOT TALENT?</button>
+        <button class="applybtn" @click="openInfoModal('COMING SOON', `We're currently putting some finishing touches on the signups for talent show. Please check back in a few hours.`)">GOT TALENT?</button>
       </div>
       <div class="backgroundimg2">
-        <img src="./assets/drumkit.png" class="backgroundimg">
+        <img src="./assets/drumkit.png" class="backgroundimg2">
+      </div>
+    </div>
+    <div class="thirdScreen" id="Book">
+      <div class="typographybg">
+        <h1 class="bigtypography unselectable">BOOK A VENUE</h1>
+      </div>
+      <div class="aboutbox selectable">
+        <h1 class="clubname">BOOK OUR AUDITORIUM</h1>
+        <br>
+        <h2 class="gradient-text subheading2">LET'S RUN A SHOW!</h2>
+        <p class="clubinfo">Have a show you need to run, need a great auditorium to run it in in the Etobicoke area? Book our auditorium. If you're an in school organization, you can book us for free. If not, we can negotiate a price.</p>
+        <button class="applybtn" @click="openBookingModal">BOOK US</button>
+      </div>
+      <div class="backgroundimg2">
+        <img src="./assets/drumkit.png" class="backgroundimg2">
       </div>
     </div>
   </div>
@@ -68,24 +88,20 @@ export default {
   },
   methods: {
     openBookingModal() {
-      window.location.href = "#About"
       this.bookingModalOpen = true
       this.preventScrolling = true
     },
     closeBookingModal() {
-      window.location.href = "#"
       this.bookingModalOpen = false;
       this.preventScrolling = false
     },
-    comingSoon() {
-      window.location.href = "#Talent"
+    openInfoModal(header, text) {
       this.infoModalData.open = true
       this.preventScrolling = true
-      this.infoModalData.header = "COMING SOON"
-      this.infoModalData.text = "We're currently putting some finishing touches on the signups for talent show. Please check back in a few hours."
+      this.infoModalData.header = header
+      this.infoModalData.text = text
     },
     closeInfoModal() {
-      window.location.href = "#Talent"
       this.infoModalData.open = false;
       this.preventScrolling = false
     },
@@ -230,26 +246,7 @@ html {
 }
 
 
-/* header.css */
-li {
-  float: left;
-}
 
-li p {
-  color: white;
-  display: block;
-  padding: 16px;
-  padding-top: 0;
-  text-align: center;
-  text-decoration: none;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-}
 
 .unselectable {
   -moz-user-select: none;
@@ -271,13 +268,15 @@ ul {
   background-color: var(--mciafcblack);
   box-shadow: 0px 0px 20px rgba(12, 12, 12, 0.75);
   padding-top: 30px;
-  padding-bottom: -30px;
+  display: block;
+  align-content: center;
   position: fixed;
   width: 100%;
+  height: 50px;
   z-index: 100;
 }
 
-.about {
+/* .about {
   position: fixed;
   left: 30px;
   top: 26.5px;
@@ -288,6 +287,47 @@ ul {
   left: 130px;
   top: 26.5px;
 }
+
+.book {
+  position: fixed;
+  left: 230px;
+  top: 26.5px;
+} */
+
+/* header.css */
+li {
+  float: left;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 10px;
+}
+
+li p {
+  color: white;
+  display: block;
+  padding-top: 0;
+  text-align: center;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  position: absolute;
+  top: 15px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.navbox {
+  display: flexbox;
+  flex-wrap: nowrap;
+  margin-bottom: 10px;
+  height: 60px;
+  top: 0;
+  left: 0;
+}
+
 
 
 
@@ -306,6 +346,35 @@ body {
   z-index: 2;
 }
 
+.initalScreen {
+  position: absolute;
+  margin: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.secondScreen {
+  position: absolute;
+  margin: 0;
+  top: 115%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.thirdScreen {
+  position: absolute;
+  margin: 0;
+  top: 230%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+
+
 .clubname {
   color: var(--mciafcorange);
   font-weight: 600;
@@ -322,7 +391,6 @@ body {
   overflow: hidden;
   position: absolute;
   width: 1920px;
-  z-index: -1;
 }
 
 .applybtn {
@@ -430,6 +498,7 @@ body {
   right: 5%;
   text-align: right;
   top: 20%;
+  z-index: 2;
   width: fit-content;
 }
 
@@ -449,16 +518,14 @@ body {
   position: absolute;
   right: 5%;
   text-align: center;
-  top: 125%;
   width: 500px;
   z-index: 10;
 }
 
 .backgroundimg2 {
-  height: 92%;
+  height: 100%;
   margin: 0;
   position: absolute;
-  top: 115%;
   width: 1920px;
   z-index: -1;
 }
@@ -502,7 +569,7 @@ body {
   position: absolute;
   left: 5%;
   text-align: left;
-  top: 127%;
+  top: 20%;
   width: fit-content;
 }
 </style>

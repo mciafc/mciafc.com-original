@@ -85,11 +85,11 @@ export default {
     box-shadow: .8rem .8rem 1.4rem #151515,
         -.2rem -.2rem 1.8rem #272727;
     animation: fade-in 300ms forwards ease-out;
-    position: absolute;
+    position: fixed;
     margin: auto;
     left: 0;
     right: 0;
-    top: 150%;
+    top: 0;
     bottom: 0;
     text-align: center;
     height: fit-content;
@@ -113,9 +113,9 @@ export default {
     background-color: #19191980;
     animation: blur 200ms forwards ease-out;
     opacity: 1;
-    position: absolute;
+    position: fixed;
     margin: 0;
-    top: 115%;
+    top: 0;
     left: 0;
 }
 
