@@ -60,10 +60,11 @@
         <br>
         <h2 class="gradient-text subheading2">LET'S RUN A SHOW!</h2>
         <p class="clubinfo">Have a show you need to run, need a great auditorium to run it in in the Etobicoke area? Book our auditorium. If you're an in school organization, you can book us for free. If not, we can negotiate a price.</p>
+        <button class="applybtn moveup">AUD SPECS</button>
         <button class="applybtn" @click="openBookingModal">BOOK US</button>
       </div>
       <div class="backgroundimg2">
-        <img src="./assets/drumkit.png" class="backgroundimg2">
+        <img src="./assets/aud.jpg" class="backgroundimg2">
       </div>
     </div>
   </div>
@@ -404,6 +405,15 @@ body {
   position: absolute;
   right: 0;
   scale: 1.5;
+}
+
+.moveup {
+  bottom: 140px !important;
+  transition: all 200ms !important;
+}
+
+.moveup:hover {
+  transform: translateY(-5px)
 }
 
 .aboutbox {
