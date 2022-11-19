@@ -328,7 +328,7 @@ ul {
   list-style-type: none;
   margin: 0;
   position: absolute;
-  top: 15px;
+  top: 13px;
   overflow: hidden;
   padding: 0;
 }

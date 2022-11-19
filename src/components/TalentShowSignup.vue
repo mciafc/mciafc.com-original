@@ -38,7 +38,7 @@
             <h2>Equipment</h2>
             <p>What equipment does your act need?</p>
             <h3>Microphones*</h3>
-            <input type="number" ref="mics" v-model="actEquipment.mics" max="4">
+            <input type="number" ref="mics" v-model="actEquipment.mics" max="4" min="0">
             <p style="color: red;" v-if="this.actEquipment.mics > 2"><span>Some mics will be wired.</span></p>
             <h3>Close-Up Camera</h3>
             <p>We will either setup a camera on-stage or have a handheld camera on-stage.</p>
