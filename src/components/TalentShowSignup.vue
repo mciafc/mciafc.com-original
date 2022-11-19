@@ -82,7 +82,7 @@
             <p>We will email you soon with your audition date, as well as any concerns we may have regarding equipment.</p>
         </div>
         <br>
-        <a class="goback unselectable" v-if="talentModalPage < 4" @click="goBack">←</a>
+        <a class="goback unselectable" v-if="talentModalPage < 4 && talentModalPage != 0" @click="goBack">←</a>
         <button class="continuebutton" @click="nextModalPage" v-if="!reviewMode"  v-show="talentModalPage != 5" ref="continuebutton">Continue</button>
         <button class="continuebutton" @click="finishReviewing" v-else>Finish Reviewing This Section</button>
         <button class="continuebutton" v-if="talentModalPage == 5" @click="closeModalAnimation">Done</button>
