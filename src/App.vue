@@ -1,6 +1,7 @@
 <template>
   <div class="body" :class="{ noscroll: bookingModalOpen }" id="About" ref="about">
     <BookForm @closebookingmodal="closeBookingModal" :bookingModalOpenProp="bookingModalOpen"></BookForm>
+    <TalentModal @closetalentmodal="closeTalentModal" :talentModalOpenProp="talentModalOpen" />
     <InfoModal @closeinfomodal="closeInfoModal" :infoModalOpenProp="infoModalData.open" :headerProp="infoModalData.header" :textProp="infoModalData.text" />
     <header class="header unselectable">
       <ul>
@@ -46,7 +47,7 @@
         <h2 class="gradient-text subheading2">December 23rd</h2>
         <p class="clubinfo">Our normal Winter Assembly has been replaced with a Talent Show! Click the button below to
           audition for an act!</p>
-        <button class="applybtn" @click="openInfoModal('COMING SOON', `We're currently putting some finishing touches on the signups for talent show. Please check back in a few hours.`)">GOT TALENT?</button>
+        <button class="applybtn" @click="openTalentModal">GOT TALENT?</button>
       </div>
       <div class="backgroundimg2">
         <img src="./assets/drumkit.png" class="backgroundimg2">
@@ -74,24 +75,35 @@
 <script>
 import BookForm from "./components/BookForm.vue"
 import InfoModal from "./components/InfoModal.vue"
+import TalentModal from "./components/TalentShowSignup.vue"
 
 export default {
   name: 'App',
   components: {
     BookForm,
-    InfoModal
+    InfoModal,
+    TalentModal
   },
   data() {
     return {
       bookingModalOpen: false,
       infoModalData: {},
       preventScrolling: false,
+      talentModalOpen: false
     }
   },
   methods: {
     openBookingModal() {
       this.bookingModalOpen = true
       this.preventScrolling = true
+    },
+    openTalentModal() {
+      this.talentModalOpen = true
+      this.preventScrolling = true
+    },
+    closeTalentModal() {
+      this.talentModalOpen = false
+      this.preventScrolling = false
     },
     closeBookingModal() {
       this.bookingModalOpen = false;
