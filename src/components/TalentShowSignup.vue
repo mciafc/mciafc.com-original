@@ -103,7 +103,7 @@ export default {
         return {
             // State managers
             talentModalOpen: false,
-            talentModalPage: 5, // 0 = organizer info, 1 = act info, 2 = act equipment, 3 = additional info, 4 = confirmation window
+            talentModalPage: 0, // 0 = organizer info, 1 = act info, 2 = act equipment, 3 = additional info, 4 = confirmation window
             requiredFieldCheckFailed: false,
             reviewMode: false,
             modalScrollEnabled: false,
