@@ -11,9 +11,9 @@
           <li>
             <p><a class="talent" href="/#Talent">Talent Show</a></p>
           </li>
-          <li>
+          <!-- <li>
             <p><a class="book" href="/#Book">Book Us</a></p>
-          </li>
+          </li> -->
         </div>
       </ul>
     </header>
@@ -25,8 +25,9 @@
         <h1 class="clubname">AUDITORIUM FACILITIES CREW</h1>
         <br>
         <h2 class="gradient-text subheading">ABOUT US</h2>
-        <p class="clubinfo">The AFC is responsible for working the more technical parts of the MCI auditorium. We help out with assemblies, extracurricular activities, and more by setting up the stage lights, speakers and other equipment. We have around 20 amazing crew members. Click the button below to view more detailed information such as auditorium specifications.</p>
-        <button class="applybtn" @click="openInfoModal('COMING SOON', `We're currently putting some finishing touches on the signups for talent show. Please check back in a few hours.`)">MORE INFO</button>
+        <p class="clubinfo" style="font-size: 18px !important;">The AFC is responsible for working the more technical parts of the MCI auditorium. We help out with assemblies, extracurricular activities, and more by setting up the stage lights, speakers and other equipment. Click the button below to view more detailed information such as auditorium specifications or to book our auditorium.</p>
+        <button class="applybtn moveup" @click="openBookingModal">BOOK US</button>
+        <button class="applybtn" @click="openInfoModal('COMING SOON', `We're still gathering information, this may take a little longer to get online due to the CUPE Strike. We are not currently allowed into the school.`)">MORE INFO</button>
       </div>
       <div class="backgroundimg">
         <img src="./assets/board3.png" class="backgroundimg boardimgshift">
@@ -51,7 +52,7 @@
         <img src="./assets/drumkit.png" class="backgroundimg2">
       </div>
     </div>
-    <div class="thirdScreen" id="Book">
+    <!-- <div class="thirdScreen" id="Book">
       <div class="typographybg">
         <h1 class="bigtypography unselectable">BOOK A VENUE</h1>
       </div>
@@ -66,7 +67,7 @@
       <div class="backgroundimg2">
         <img src="./assets/aud.jpg" class="backgroundimg2">
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
