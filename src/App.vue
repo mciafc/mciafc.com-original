@@ -246,7 +246,7 @@ export default {
     text-align: center;
     height: 750px;
     width: 300px !important;
-    background-color: #191919;
+    background-color: #313131 !important;
     font-size: 16px;
     z-index: 20000000;
     padding: 20px;
