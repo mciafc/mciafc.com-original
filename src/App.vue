@@ -184,7 +184,11 @@ export default {
     right: 0 !important;
     line-height: 1.2;
     margin: auto !important;
-    padding: 25px;
+    padding: 0 !important;
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
     position: absolute;
     text-align: center;
     top: 10% !important;
