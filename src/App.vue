@@ -141,6 +141,122 @@ export default {
 </script>
 
 <style>
+@media only screen and (max-device-width: 480px) {
+  .backgroundimg {
+    display: none;
+  }
+  .backgroundimg2 {
+    display: none;
+  }
+  .header {
+    display: none !important;
+  }
+  li {
+    display: none;
+  }
+  .navbox {
+    display: none;
+  }
+  ul {
+    display: none;
+  }
+  li p {
+    display: none;
+  }
+  .scrollReminder {
+    display: none;
+  }
+  .typographybg {
+    display: none;
+  }
+  .typographybg2 {
+    display: none;
+  }
+  .aboutbox {
+    backdrop-filter: none !important;
+    background-color: #191919c0;
+    border-radius: 2rem;
+    backdrop-filter: blur(4px);
+    background-color: #191919c0;
+    border-radius: 2rem;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    left: 0 !important;
+    right: 0 !important;
+    line-height: 1.2;
+    margin: auto !important;
+    padding: 25px;
+    position: absolute;
+    text-align: center;
+    top: 10% !important;
+    width: 400px !important;
+    z-index: 10;
+    height: 650px !important;
+  }
+  .clubname {
+    color: var(--mciafcorange);
+    font-weight: 600;
+    font-size: 50px !important;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 10px;
+  }
+  .aboutbox2 {
+    backdrop-filter: none !important;
+    background-color: #191919c0;
+    border-radius: 2rem;
+    backdrop-filter: blur(4px);
+    background-color: #191919c0;
+    border-radius: 2rem;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    left: 0 !important;
+    right: 0 !important;
+    line-height: 1.2;
+    margin: auto !important;
+    padding: 25px;
+    position: absolute;
+    text-align: center;
+    top: 10% !important;
+    width: 400px !important;
+    z-index: 10;
+    height: 650px !important;
+  }
+  .darkenbackground {
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    background-color: #19191980;
+    animation: blur 200ms forwards ease-out;
+    opacity: 1;
+    position: fixed;
+    margin: 0;
+    top: 0;
+    left: 0;
+  }
+  .bookModal {
+    box-shadow:.8rem .8rem 1.4rem #151515, 
+                -.2rem -.2rem 1.8rem #222222;
+    animation: fade-in 300ms forwards ease-out;
+    position: fixed;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    height: 750px;
+    width: 300px !important;
+    background-color: #191919;
+    font-size: 16px;
+    z-index: 20000000;
+    padding: 20px;
+    padding-left: 75px;
+    padding-right: 75px;
+    border-radius: 3rem;
+    overflow: hidden;
+  }
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;1,800&display=swap');
 
 ::-webkit-scrollbar {
