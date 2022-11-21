@@ -77,6 +77,7 @@
             <p>Your request has been submitted to our team and will be reviewed. We will send an email to the contact email you specified soon regarding any information we have about your booking, such as, if we are available at that time, the price to rent us out, and more. If you have any questions, email execs@mciafc.com</p>
         </div>
         <br>
+        <a class="goback unselectable" v-if="bookingModalBookStage < 5 && bookingModalBookStage != 0" @click="goBack">←</a>
         <button class="continuebutton" @click="nextModalPage" v-if="!reviewMode" ref="continuebutton"><span v-if="bookingModalBookStage != 6">Continue</span><span v-else>DONE</span></button>
         <button class="continuebutton" @click="finishReviewing" v-else>Finish Reviewing This Section</button>
         <p style="color: red;" v-if="requiredFieldCheckFailed" class="fieldCheckText" ref="fieldCheckText">Please fill out all required fields</p>
@@ -163,6 +164,11 @@ export default {
         },
         closeModalEvent() {
             this.$emit('closebookingmodal')
+        },
+        goBack() {
+            if (this.bookingModalBookStage - 1 > -1) {
+                this.bookingModalBookStage--
+            }
         },
         nextModalPage() {
             if (this.bookingModalBookStage === 0) {
@@ -509,4 +515,17 @@ export default {
         right: 0;
         bottom: 120px;
     }
+
+    .goback {
+    position: absolute;
+    margin: auto;
+    left: 150px;
+    font-size: 2rem;
+    bottom: 60px;
+}
+
+.goback:hover {
+    cursor: pointer;
+}
+
 </style>
