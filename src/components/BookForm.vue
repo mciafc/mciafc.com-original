@@ -1,7 +1,7 @@
 <template>
     <div class="bookModal" :class="{ scrollable: modalScrollEnabled }" ref="bookModal" v-if="bookingModalOpenProp">
-        <h1 v-if="bookingModalBookStage != 5">Book the AFC</h1>
-        <p v-if="![2, 5].includes(bookingModalBookStage)">Fields marked with * are required. You'll be able to review your information before you submit.</p>
+        <h1 v-if="![5, 6].includes(bookingModalBookStage)">Book the AFC</h1>
+        <p v-if="![2, 5, 6].includes(bookingModalBookStage)">Fields marked with * are required. You'll be able to review your information before you submit.</p>
         <!-- Organizer Info -->
         <div class="OrganizerInfo booktext" v-if="bookingModalBookStage == 0">
             <h2>Organizer Information</h2>
@@ -72,11 +72,15 @@
             <p>Paid Job: {{ paidJob }}</p>
             <h3 style="text-decoration: underline; cursor: pointer;" @click="startReview(4)">Additional Info (Click to show)</h3>
         </div>
+        <div class="confirmedWindow" v-if="bookingModalBookStage == 6">
+            <h1>Booking request submitted!</h1>
+            <p>Your request has been submitted to our team and will be reviewed. We will send an email to the contact email you specified soon regarding any information we have about your booking, such as, if we are available at that time, the price to rent us out, and more. If you have any questions, email execs@mciafc.com</p>
+        </div>
         <br>
-        <button class="continuebutton" @click="nextModalPage" v-if="!reviewMode" ref="continuebutton">Continue</button>
+        <button class="continuebutton" @click="nextModalPage" v-if="!reviewMode" ref="continuebutton"><span v-if="bookingModalBookStage != 6">Continue</span><span v-else>DONE</span></button>
         <button class="continuebutton" @click="finishReviewing" v-else>Finish Reviewing This Section</button>
         <p style="color: red;" v-if="requiredFieldCheckFailed" class="fieldCheckText" ref="fieldCheckText">Please fill out all required fields</p>
-        <p class="pagenumber">Page {{ bookingModalBookStage + 1 }} / 6</p>
+        <p class="pagenumber" v-if="bookingModalBookStage != 6">Page {{ bookingModalBookStage + 1 }} / 6</p>
     </div>
     <div class="darkenbackground" ref="darkenbackground" v-if="bookingModalOpenProp" @click="closeModalAnimation" :class="{ noscroll: bookingModalOpenProp }"></div>
 </template>
@@ -133,8 +137,8 @@ export default {
             let data = newGig
             console.log(data)
             if (data.success == true) {
-                this.$emit('closebookingmodal')
-                this.bookingModalBookStage = 0;
+                this.bookingModalBookStage = 6;
+                this.$refs.continuebutton.disabled = false;
 
                 // Reset data
                 this.organizerName = ""
@@ -256,6 +260,10 @@ export default {
                 //         this.bookingModalBookStage = 0;
                 //     }
                 // })
+            } else 
+            if (this.bookingModalBookStage == 6) {
+                this.bookingModalBookStage = 0;
+                this.$emit('closebookingmodal')
             }
         },
         startReview(page) {
