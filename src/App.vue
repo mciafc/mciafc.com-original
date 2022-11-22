@@ -13,9 +13,9 @@
           <li>
             <p><a class="talent" href="/#Talent">Talent Show</a></p>
           </li>
-          <!-- <li>
-            <p><a class="book" href="/#Book">Book Us</a></p>
-          </li> -->
+          <li>
+            <p><a class="book" href="/#Book">Book</a></p>
+          </li>
         </div>
       </ul>
     </header>
@@ -27,8 +27,8 @@
         <h1 class="clubname">AUDITORIUM FACILITIES CREW</h1>
         <br>
         <h2 class="gradient-text subheading">ABOUT US</h2>
-        <p class="clubinfo" style="font-size: 18px !important;">The AFC is responsible for working the more technical parts of the MCI auditorium. We help out with assemblies, extracurricular activities, and more by setting up the stage lights, speakers and other equipment. Click the button below to view more detailed information such as auditorium specifications or to book our auditorium.</p>
-        <button class="applybtn moveup" @click="openBookingModal">BOOK US</button>
+        <p class="clubinfo">The AFC is responsible for working the more technical parts of the MCI auditorium. We help out with assemblies, extracurricular activities, and more by setting up the stage lights, speakers and other equipment. Click the button below to view more detailed information about our auditorium.</p>
+        <!-- <button class="applybtn moveup" @click="openBookingModal">BOOK US</button> -->
         <button class="applybtn" @click="specsModalOpen = true">MORE INFO</button>
       </div>
       <div class="backgroundimg">
@@ -54,7 +54,7 @@
         <img src="./assets/drumkit.png" class="backgroundimg2">
       </div>
     </div>
-    <!-- <div class="thirdScreen" id="Book">
+    <div class="thirdScreen" id="Book">
       <div class="typographybg">
         <h1 class="bigtypography unselectable">BOOK A VENUE</h1>
       </div>
@@ -62,14 +62,14 @@
         <h1 class="clubname">BOOK OUR AUDITORIUM</h1>
         <br>
         <h2 class="gradient-text subheading2">LET'S RUN A SHOW!</h2>
-        <p class="clubinfo">Have a show you need to run, need a great auditorium to run it in in the Etobicoke area? Book our auditorium. If you're an in school organization, you can book us for free. If not, we can negotiate a price.</p>
-        <button class="applybtn moveup">AUD SPECS</button>
+        <p class="clubinfo">If you're looking for a space to run your show in the Etobicoke area, we have one of the best auditoriums. We've worked with several third party groups in the past and they all only have good things to say. If you're an in-school organization, you can book us for free.</p>
+        <!-- <button class="applybtn moveup">AUD SPECS</button> -->
         <button class="applybtn" @click="openBookingModal">BOOK US</button>
       </div>
       <div class="backgroundimg2">
         <img src="./assets/aud.jpg" class="backgroundimg2">
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
