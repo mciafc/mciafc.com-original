@@ -25,7 +25,7 @@
             <h3>Act Name*</h3>
             <input type="text" name="Act Name" ref="actName" v-model="this.actName" placeholder="e.g Mystical Magic Show">
             <h3>Act Length (minutes)*</h3>
-            <input type="number" name="Act Length" max="30" ref="actLength" v-model="this.actLength">
+            <input type="number" name="Act Length" max="10" ref="actLength" v-model="this.actLength">
             <h3 v-if="!isClub">Act Members*</h3>
             <p v-if="!isClub">How people will be participating in your act</p>
             <input v-if="!isClub" type="number" name="Act Members" ref="actMembers" max="30" :value="this.actMembers">
