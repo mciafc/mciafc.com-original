@@ -45,7 +45,7 @@
       <div class="aboutbox2 selectable">
         <h1 class="clubname">TALENT SHOW REGISTRATION</h1>
         <br>
-        <h2 class="gradient-text subheading2">December 23rd</h2>
+        <h2 class="gradient-text subheading2">Late December</h2>
         <p class="clubinfo">Our normal Winter Assembly has been replaced with a Talent Show! Click the button below to
           audition for an act!</p>
         <button class="applybtn" @click="openTalentModal">GOT TALENT?</button>
