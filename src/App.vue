@@ -1,6 +1,6 @@
 <template>
   <div class="body" :class="{ noscroll: bookingModalOpen }" id="About" ref="about">
-    <BookForm @closebookingmodal="closeBookingModal" :bookingModalOpenProp="bookingModalOpen"></BookForm>
+    <BookForm @viewSpecs="specsModalOpen = true" @closebookingmodal="closeBookingModal" :bookingModalOpenProp="bookingModalOpen"></BookForm>
     <TalentModal @closetalentmodal="closeTalentModal" :talentModalOpenProp="talentModalOpen" />
     <InfoModal @closeinfomodal="closeInfoModal" :infoModalOpenProp="infoModalData.open" :headerProp="infoModalData.header" :textProp="infoModalData.text" />
     <SpecsModal :viewingSpecs="specsModalOpen" @closeSpecsModal="specsModalOpen = false" @notReadyYet="notReadyYet"/>
