@@ -4,8 +4,8 @@
         <div class="container">
             <h2>Seating Capacity: 669 + Wheelchair accessibility</h2>
             <h2><a href="https://mciafc.com/equipment" target="__blank">Equipment Inventory</a></h2>
-            <h2><a href="">Stage Plan</a></h2>
-            <h2><a href="">Lighting & Sound Plot</a></h2>
+            <h2><a @click="notReadyYet">Stage Plan</a></h2>
+            <h2><a @click="notReadyYet">Lighting & Sound Plot</a></h2>
             <h2>Accessibility</h2>
             <p>Our auditorium is very accessible. The main entrances and the right side entrances are wheelchair accessible.</p>
             <!-- <h2>Storage</h2>
@@ -34,8 +34,14 @@ export default {
         },
         emitClose() {
             this.$emit('closeSpecsModal')
+        },
+        notReadyYet() {
+            let title = "COMING SOON"
+            let text = "We're still collecting this data. Please check back soon."
+            this.$emit("notReadyYet", title, text)
         }
-    }
+    },
+    emits: ['closeSpecsModal', 'notReadyYet']
 }
 </script>
 
@@ -88,5 +94,8 @@ export default {
         bottom: 10%;
         scale: 1.5;
         font-weight: 600;
+    }
+    a:hover {
+        cursor: pointer;
     }
 </style>

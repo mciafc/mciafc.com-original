@@ -3,7 +3,7 @@
     <BookForm @closebookingmodal="closeBookingModal" :bookingModalOpenProp="bookingModalOpen"></BookForm>
     <TalentModal @closetalentmodal="closeTalentModal" :talentModalOpenProp="talentModalOpen" />
     <InfoModal @closeinfomodal="closeInfoModal" :infoModalOpenProp="infoModalData.open" :headerProp="infoModalData.header" :textProp="infoModalData.text" />
-    <SpecsModal :viewingSpecs="specsModalOpen" @closeSpecsModal="specsModalOpen = false"/>
+    <SpecsModal :viewingSpecs="specsModalOpen" @closeSpecsModal="specsModalOpen = false" @notReadyYet="notReadyYet"/>
     <header class="header unselectable">
       <ul>
         <div class="navbox">
@@ -97,6 +97,9 @@ export default {
     }
   },
   methods: {
+    notReadyYet(title, text) {
+      this.openInfoModal(title, text)
+    },
     openBookingModal() {
       this.bookingModalOpen = true
       this.preventScrolling = true
