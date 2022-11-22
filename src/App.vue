@@ -3,6 +3,7 @@
     <BookForm @closebookingmodal="closeBookingModal" :bookingModalOpenProp="bookingModalOpen"></BookForm>
     <TalentModal @closetalentmodal="closeTalentModal" :talentModalOpenProp="talentModalOpen" />
     <InfoModal @closeinfomodal="closeInfoModal" :infoModalOpenProp="infoModalData.open" :headerProp="infoModalData.header" :textProp="infoModalData.text" />
+    <SpecsModal :viewingSpecs="specsModalOpen" @closeSpecsModal="specsModalOpen = false"/>
     <header class="header unselectable">
       <ul>
         <div class="navbox">
@@ -28,7 +29,7 @@
         <h2 class="gradient-text subheading">ABOUT US</h2>
         <p class="clubinfo" style="font-size: 18px !important;">The AFC is responsible for working the more technical parts of the MCI auditorium. We help out with assemblies, extracurricular activities, and more by setting up the stage lights, speakers and other equipment. Click the button below to view more detailed information such as auditorium specifications or to book our auditorium.</p>
         <button class="applybtn moveup" @click="openBookingModal">BOOK US</button>
-        <button class="applybtn" @click="openInfoModal('COMING SOON', `We're still gathering information, this may take a little longer to get online due to the CUPE Strike. We are not currently allowed into the school.`)">MORE INFO</button>
+        <button class="applybtn" @click="specsModalOpen = true">MORE INFO</button>
       </div>
       <div class="backgroundimg">
         <img src="./assets/board3.png" class="backgroundimg boardimgshift">
@@ -76,20 +77,23 @@
 import BookForm from "./components/BookForm.vue"
 import InfoModal from "./components/InfoModal.vue"
 import TalentModal from "./components/TalentShowSignup.vue"
+import SpecsModal from "./components/SpecsModal.vue"
 
 export default {
   name: 'App',
   components: {
     BookForm,
     InfoModal,
-    TalentModal
+    TalentModal,
+    SpecsModal
   },
   data() {
     return {
       bookingModalOpen: false,
       infoModalData: {},
       preventScrolling: false,
-      talentModalOpen: false
+      talentModalOpen: false,
+      specsModalOpen: false,
     }
   },
   methods: {
