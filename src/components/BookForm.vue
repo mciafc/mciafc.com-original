@@ -1,7 +1,11 @@
 <template>
     <div class="bookModal" :class="{ scrollable: modalScrollEnabled }" ref="bookModal" v-if="bookingModalOpenProp">
-        <h1 v-if="![5, 6].includes(bookingModalBookStage)">Book the AFC</h1>
-        <p v-if="![2, 5, 6].includes(bookingModalBookStage)">Fields marked with * are required. You'll be able to review your information before you submit.</p>
+        <h1 v-if="![-1, 5, 6].includes(bookingModalBookStage)">Book the AFC</h1>
+        <p v-if="![-1, 2, 5, 6].includes(bookingModalBookStage)">Fields marked with * are required. You'll be able to review your information before you submit.</p>
+        <div class="PreInfo" v-if="bookingModalBookStage == -1">
+            <h1>Before you Book</h1>
+            <p>Please ensure you have checked our <a style="cursor: pointer;" @click="checkSpecs">Auditorium Specifications</a></p>
+        </div>
         <!-- Organizer Info -->
         <div class="OrganizerInfo booktext" v-if="bookingModalBookStage == 0">
             <h2>Organizer Information</h2>
@@ -77,11 +81,11 @@
             <p>Your request has been submitted to our team and will be reviewed. We will send an email to the contact email you specified soon regarding any information we have about your booking, such as, if we are available at that time, the price to rent us out, and more. If you have any questions, email execs@mciafc.com</p>
         </div>
         <br>
-        <a class="goback unselectable" v-if="bookingModalBookStage < 5 && bookingModalBookStage != 0" @click="goBack">←</a>
+        <a class="goback unselectable" v-if="bookingModalBookStage < 5 && ![-1].includes(bookingModalBookStage)" @click="goBack">←</a>
         <button class="continuebutton" @click="nextModalPage" v-if="!reviewMode" ref="continuebutton"><span v-if="bookingModalBookStage != 6">Continue</span><span v-else>DONE</span></button>
         <button class="continuebutton" @click="finishReviewing" v-else>Finish Reviewing This Section</button>
         <p style="color: red;" v-if="requiredFieldCheckFailed" class="fieldCheckText" ref="fieldCheckText">Please fill out all required fields</p>
-        <p class="pagenumber" v-if="bookingModalBookStage != 6">Page {{ bookingModalBookStage + 1 }} / 6</p>
+        <p class="pagenumber" v-if="bookingModalBookStage != 6 && bookingModalBookStage != -1">Page {{ bookingModalBookStage + 1 }} / 6</p>
     </div>
     <div class="darkenbackground" ref="darkenbackground" v-if="bookingModalOpenProp" @click="closeModalAnimation" :class="{ noscroll: bookingModalOpenProp }"></div>
 </template>
@@ -95,7 +99,7 @@ export default {
         return {
             // State managers
             bookingModalOpen: false,
-            bookingModalBookStage: 0, // 0 = organizer info, 1 = organization info, 2 = event info, 3 = crew info, 4 = additional info, 5 = confirmation window
+            bookingModalBookStage: -1, // 0 = organizer info, 1 = organization info, 2 = event info, 3 = crew info, 4 = additional info, 5 = confirmation window
             requiredFieldCheckFailed: false,
             reviewMode: false,
             modalScrollEnabled: false,
@@ -129,7 +133,7 @@ export default {
     props: {
         bookingModalOpenProp: Boolean
     },
-    emits: ['closebookingmodal'],
+    emits: ['closebookingmodal', 'viewSpecs'],
     created() {
         this.socket = io("https://io.mciafc.com/gigs")
     },
@@ -162,15 +166,22 @@ export default {
             this.$refs.darkenbackground.classList.add('unblur')
             setTimeout(this.closeModalEvent, 100)
         },
+        checkSpecs() {
+            this.closeModalAnimation()
+            this.$emit("viewSpecs")
+        },
         closeModalEvent() {
             this.$emit('closebookingmodal')
         },
         goBack() {
-            if (this.bookingModalBookStage - 1 > -1) {
+            if (this.bookingModalBookStage - 1 > -2) {
                 this.bookingModalBookStage--
             }
         },
         nextModalPage() {
+            if (this.bookingModalBookStage === -1) {
+                this.bookingModalBookStage = 0
+            }
             if (this.bookingModalBookStage === 0) {
                 this.organizerName = this.$refs.organizerName.value
                 this.organizerEmail = this.$refs.organizerEmail.value
