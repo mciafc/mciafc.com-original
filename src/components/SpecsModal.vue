@@ -30,7 +30,7 @@ export default {
     methods: {
         closeAnimation() {
             this.$refs.specsmodal.classList.add('backUp')
-            setTimeout(this.emitClose, 1500)
+            setTimeout(this.emitClose, 700)
         },
         emitClose() {
             this.$emit('closeSpecsModal')
@@ -40,19 +40,19 @@ export default {
 </script>
 
 <style scoped>
-    .bigModal {
+.bigModal {
         width: 100%;
         height: 100%;
         position: fixed;
         background-color: #191919;
         z-index: 1000;
         overflow-y: scroll;
-        transform: translateY(-300%);
-        animation: dropDown 1500ms forwards ease-in-out;
+        transform: translateY(-100%);
+        animation: dropDown 800ms forwards ease-in-out;
     }
 
     .backUp {
-        animation: backUp 1500ms forwards ease-in-out;
+        animation: backUp 800ms forwards ease-in-out;
     }
 
     @keyframes backUp {
@@ -60,13 +60,13 @@ export default {
             transform: translateY(0)
         }
         100% {
-            transform: translateY(-300%)
+            transform: translateY(-100%)
         }
     }
 
     @keyframes dropDown {
         0% {
-            transform: translateY(-300%);
+            transform: translateY(-100%);
         }
         100% {
             transform: translateY(0)
@@ -86,5 +86,7 @@ export default {
         left: 0;
         right: 0;
         bottom: 10%;
+        scale: 1.5;
+        font-weight: 600;
     }
 </style>
