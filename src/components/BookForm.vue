@@ -81,7 +81,7 @@
             <p>Your request has been submitted to our team and will be reviewed. We will send an email to the contact email you specified soon regarding any information we have about your booking, such as, if we are available at that time, the price to rent us out, and more. If you have any questions, email execs@mciafc.com</p>
         </div>
         <br>
-        <a class="goback unselectable" v-if="bookingModalBookStage < 5 && ![-1].includes(bookingModalBookStage)" @click="goBack">←</a>
+        <a class="goback unselectable" v-if="bookingModalBookStage < 6 && ![-1].includes(bookingModalBookStage)" @click="goBack">←</a>
         <button class="continuebutton" @click="nextModalPage" v-if="!reviewMode" ref="continuebutton"><span v-if="bookingModalBookStage != 6">Continue</span><span v-else>DONE</span></button>
         <button class="continuebutton" @click="finishReviewing" v-else>Finish Reviewing This Section</button>
         <p style="color: red;" v-if="requiredFieldCheckFailed" class="fieldCheckText" ref="fieldCheckText">Please fill out all required fields</p>
