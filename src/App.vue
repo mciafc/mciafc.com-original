@@ -27,7 +27,7 @@
         <div class="aboutbox selectable" :class="{ odd: aboutBoxIsOdd('aboutscreen') }">
           <h1 class="clubname">AUDITORIUM FACILITIES CREW</h1>
           <br>
-          <h2 class="gradient-text subheading">ABOUT US {{aboutBoxIsOdd('aboutscreen')}}</h2>
+          <h2 class="gradient-text subheading">ABOUT US</h2>
           <p class="clubinfo">The AFC is responsible for working the more technical parts of the MCI auditorium. We help out with assemblies, extracurricular activities, and more by setting up the stage lights, speakers and other equipment. Click the button below to view more detailed information about our auditorium.</p>
           <!-- <button class="applybtn moveup" @click="showTalentShowScreenTest">DEBUG</button> -->
           <button class="applybtn" @click="specsModalOpen = true">MORE INFO</button>
