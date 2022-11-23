@@ -168,7 +168,7 @@ export default {
         },
         checkSpecs() {
             this.closeModalAnimation()
-            this.$emit("viewSpecs")
+            setTimeout(this.$emit, 100, "viewSpecs")
         },
         closeModalEvent() {
             this.$emit('closebookingmodal')
