@@ -8,9 +8,9 @@
       <ul>
         <div class="navbox">
           <li>
-            <p><a class="about" href="/#About">About Us</a></p>
+            <p><a class="about" href="/#About">About</a></p>
           </li>
-          <li>
+          <li v-if="showTalentShowScreen">
             <p><a class="talent" href="/#Talent">Talent Show</a></p>
           </li>
           <li>
@@ -19,55 +19,57 @@
         </div>
       </ul>
     </header>
-    <div class="initialScreen">
-      <div class="typographybg">
-        <h1 class="bigtypography unselectable">WHAT IS AFC?</h1>
+    <div class="flex-container">
+      <div class="Screen section" ref="aboutscreen">
+        <div class="typographybg" :class="{ oddtypographybg: aboutBoxIsOdd('aboutscreen') }">
+          <h1 class="bigtypography unselectable" :class="{ oddtypography: aboutBoxIsOdd('aboutscreen') }">WHAT IS AFC?</h1>
+        </div>
+        <div class="aboutbox selectable" :class="{ odd: aboutBoxIsOdd('aboutscreen') }">
+          <h1 class="clubname">AUDITORIUM FACILITIES CREW</h1>
+          <br>
+          <h2 class="gradient-text subheading">ABOUT US</h2>
+          <p class="clubinfo">The AFC is responsible for working the more technical parts of the MCI auditorium. We help out with assemblies, extracurricular activities, and more by setting up the stage lights, speakers and other equipment. Click the button below to view more detailed information about our auditorium.</p>
+          <!-- <button class="applybtn moveup" @click="showTalentShowScreenTest">DEBUG</button> -->
+          <button class="applybtn" @click="specsModalOpen = true">MORE INFO</button>
+        </div>
+        <div class="backgroundimg">
+          <img src="./assets/board3.png" class="backgroundimg boardimgshift">
+        </div>
+        <div class="scrollReminder">
+          <p>Scroll to see more</p>
+        </div>
       </div>
-      <div class="aboutbox selectable">
-        <h1 class="clubname">AUDITORIUM FACILITIES CREW</h1>
-        <br>
-        <h2 class="gradient-text subheading">ABOUT US</h2>
-        <p class="clubinfo">The AFC is responsible for working the more technical parts of the MCI auditorium. We help out with assemblies, extracurricular activities, and more by setting up the stage lights, speakers and other equipment. Click the button below to view more detailed information about our auditorium.</p>
-        <!-- <button class="applybtn moveup" @click="openBookingModal">BOOK US</button> -->
-        <button class="applybtn" @click="specsModalOpen = true">MORE INFO</button>
+      <div class="Screen section" v-if="showTalentShowScreen" id="Talent" ref="talentscreen">
+        <div class="typographybg2" :class="{ oddtypographybg: aboutBoxIsOdd('talentscreen') }">
+          <h1 class="bigtypography unselectable" :class="{ oddtypography: aboutBoxIsOdd('talentscreen') }">TALENT SHOW SIGNUPS</h1>
+        </div>
+        <div class="aboutbox selectable" :class="{ odd: aboutBoxIsOdd('talentscreen') }">
+          <h1 class="clubname">TALENT SHOW REGISTRATION</h1>
+          <br>
+          <h2 class="gradient-text subheading2">Late December</h2>
+          <p class="clubinfo">Our normal Winter Assembly has been replaced with a Talent Show! Click the button below to
+            audition for an act!</p>
+          <button class="applybtn" @click="openTalentModal">GOT TALENT?</button>
+        </div>
+        <div class="backgroundimg2">
+          <img src="./assets/drumkit.png" class="backgroundimg2">
+        </div>
       </div>
-      <div class="backgroundimg">
-        <img src="./assets/board3.png" class="backgroundimg boardimgshift">
-      </div>
-      <div class="scrollReminder">
-        <p>Scroll to see more</p>
-      </div>
-    </div>
-    <div class="secondScreen" id="Talent">
-      <div class="typographybg2">
-        <h1 class="bigtypography2 unselectable">TALENT SHOW SIGNUPS</h1>
-      </div>
-      <div class="aboutbox2 selectable">
-        <h1 class="clubname">TALENT SHOW REGISTRATION</h1>
-        <br>
-        <h2 class="gradient-text subheading2">December 23rd</h2>
-        <p class="clubinfo">Our normal Winter Assembly has been replaced with a Talent Show! Click the button below to
-          audition for an act!</p>
-        <button class="applybtn" @click="openTalentModal">GOT TALENT?</button>
-      </div>
-      <div class="backgroundimg2">
-        <img src="./assets/drumkit.png" class="backgroundimg2">
-      </div>
-    </div>
-    <div class="thirdScreen" id="Book">
-      <div class="typographybg">
-        <h1 class="bigtypography unselectable">BOOK A VENUE</h1>
-      </div>
-      <div class="aboutbox selectable">
-        <h1 class="clubname">BOOK OUR AUDITORIUM</h1>
-        <br>
-        <h2 class="gradient-text subheading2">LET'S RUN A SHOW!</h2>
-        <p class="clubinfo">If you're looking for a space to run your show in the Etobicoke area, we have one of the best auditoriums. We've worked with several third party groups in the past and they all only have good things to say. If you're an in-school organization, you can book us for free.</p>
-        <!-- <button class="applybtn moveup">AUD SPECS</button> -->
-        <button class="applybtn" @click="openBookingModal">BOOK US</button>
-      </div>
-      <div class="backgroundimg2">
-        <img src="./assets/aud.jpg" class="backgroundimg2">
+      <div class="Screen section" id="Book" ref="bookscreen">
+        <div class="typographybg" :class="{ oddtypographybg: aboutBoxIsOdd('bookscreen') }">
+          <h1 class="bigtypography unselectable" :class="{ oddtypography: aboutBoxIsOdd('bookscreen') }">BOOK A VENUE</h1>
+        </div>
+        <div class="aboutbox selectable" :class="{ odd: aboutBoxIsOdd('bookscreen') }">
+          <h1 class="clubname">BOOK OUR AUDITORIUM</h1>
+          <br>
+          <h2 class="gradient-text subheading2">LET'S RUN A SHOW!</h2>
+          <p class="clubinfo">If you're looking for a space to run your show in the Etobicoke area, we have one of the best auditoriums. We've worked with several third party groups in the past and they all only have good things to say. If you're an in-school organization, you can book us for free.</p>
+          <!-- <button class="applybtn moveup">AUD SPECS</button> -->
+          <button class="applybtn" @click="openBookingModal">BOOK US</button>
+        </div>
+        <div class="backgroundimg2">
+          <img src="./assets/aud.jpg" class="backgroundimg2">
+        </div>
       </div>
     </div>
   </div>
@@ -94,11 +96,20 @@ export default {
       preventScrolling: false,
       talentModalOpen: false,
       specsModalOpen: false,
+      orderOfScreens: []
     }
   },
   methods: {
     notReadyYet(title, text) {
       this.openInfoModal(title, text)
+    },
+    aboutBoxIsOdd(cref) {
+        let index = this.orderOfScreens.findIndex(ref => ref == cref)
+        if (index % 2 == 0) {
+          return false
+        } else {
+          return true
+        }
     },
     openBookingModal() {
       this.bookingModalOpen = true
@@ -143,6 +154,21 @@ export default {
           event.preventDefault()
         })
       })
+
+      let keys = Object.keys(this.$refs)
+      this.orderOfScreens = keys
+  },
+  computed: {
+    showTalentShowScreen() {
+        let currentYear = new Date().getFullYear()
+        let start = new Date(`${currentYear}-11-20`)
+        let end = new Date(`${currentYear}-12-25`)
+        let now = new Date()
+        if (now > start && now < end) {
+          return true
+        }
+        return false
+    }
   }
 }
 </script>
@@ -203,16 +229,8 @@ export default {
     z-index: 10;
     height: 650px !important;
   }
-  .clubname {
-    color: var(--mciafcorange);
-    font-weight: 600;
-    font-size: 50px !important;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 10px;
-  }
-  .aboutbox2 {
+
+  /* .odd {
     backdrop-filter: none !important;
     background-color: #191919c0;
     border-radius: 2rem;
@@ -231,7 +249,37 @@ export default {
     width: 400px !important;
     z-index: 10;
     height: 650px !important;
+  } */
+
+  .clubname {
+    color: var(--mciafcorange);
+    font-weight: 600;
+    font-size: 50px !important;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 10px;
   }
+  /* .aboutbox2 {
+    backdrop-filter: none !important;
+    background-color: #191919c0;
+    border-radius: 2rem;
+    backdrop-filter: blur(4px);
+    background-color: #191919c0;
+    border-radius: 2rem;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    left: 0 !important;
+    right: 0 !important;
+    line-height: 1.2;
+    margin: auto !important;
+    padding: 25px;
+    position: absolute;
+    text-align: center;
+    top: 10% !important;
+    width: 400px !important;
+    z-index: 10;
+    height: 650px !important;
+  } */
   .darkenbackground {
     z-index: 10000;
     width: 100%;
@@ -487,17 +535,30 @@ body {
   z-index: 2;
 }
 
-.initalScreen {
-  position: absolute;
-  margin: 0;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+.flex-container {
+    display: flexbox;
+    position: absolute;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    gap: 15%;
 }
 
+
+.flex-container > .Screen {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+
+
+/* 
 .secondScreen {
-  position: absolute;
+  display: flex;
   margin: 0;
   top: 115%;
   left: 0;
@@ -506,13 +567,13 @@ body {
 }
 
 .thirdScreen {
-  position: absolute;
   margin: 0;
+  display: flex;
   top: 230%;
   left: 0;
   height: 100%;
   width: 100%;
-}
+} */
 
 
 
@@ -652,24 +713,23 @@ body {
   width: fit-content;
 }
 
+.oddtypographybg {
+  height: fit-content;
+  margin: 0;
+  position: absolute;
+  left: 5%;
+  text-align: left;
+  top: 20%;
+  width: fit-content;
+}
+
 
 
 /* secondscreen.css */
 
-.aboutbox2 {
-  backdrop-filter: blur(4px);
-  background-color: #191919c0;
-  border-radius: 2rem;backdrop-filter: blur(4px);background-color: #191919c0;border-radius: 2rem;box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);height: 650px;right: 5%;line-height: 1.2;margin: 0;padding: 25px;position: absolute;text-align: center;top: 17.5%;width: 500px;z-index: 10;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-  height: 650px;
-  line-height: 1.2;
-  margin: 0;
-  padding: 25px;
-  position: absolute;
-  right: 5%;
-  text-align: center;
-  width: 500px;
-  z-index: 10;
+.odd {
+  left: auto !important;
+  right: 5% !important;
 }
 
 .backgroundimg2 {
@@ -696,21 +756,9 @@ body {
   top: 200px;
 }
 
-.bigtypography2 {
-  -webkit-background-clip: text;
-  background-clip: text;
-  background-image: linear-gradient(-45deg, rgb(229, 157, 22, 0.5), #57acdc);
-  background-position: 50% 200%;
-  background-size: 200% 200%;
-  color: transparent;
-  font-family: 'Poppins', sans-serif;
-  font-size: 150px;
-  font-style: italic;
-  font-weight: 800;
-  line-height: 1;
-  opacity: 0.9;
-  padding-right: 40%;
-  text-shadow: 10px 5px 2px rgba(255, 255, 255);
+.oddtypography {
+  padding-left: 0;
+  padding-right: 50% !important;
 }
 
 .typographybg2 {

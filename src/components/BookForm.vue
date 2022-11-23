@@ -46,9 +46,8 @@
             <h3>Crew Members Needed</h3>
             <p>The amount of crew members needed, we have around 20 including 3 execs. Set to 0 for as many as possible.</p>
             <input type="number" name="CrewMembersNeeded" max="21" min="0" :value="this.crewMembersNeeded" ref="crewMembersNeeded">
-            <h3>Paid Job</h3>
-            <p>Tick the box if the crew members that will be present will be getting paid for their work. If you're an in-school
-                organization, you should probably leave the box unticked.</p>
+            <h3>Are You a Third Party Organization?</h3>
+            <p>Tick the box if you are a third-party organization.</p>
             <input type="checkbox" name="Paid Job" ref="paidJob" :checked="this.paidJob">
         </div>
         <!-- Additional Info -->
@@ -81,7 +80,7 @@
             <p>Your request has been submitted to our team and will be reviewed. We will send an email to the contact email you specified soon regarding any information we have about your booking, such as, if we are available at that time, the price to rent us out, and more. If you have any questions, email execs@mciafc.com</p>
         </div>
         <br>
-        <a class="goback unselectable" v-if="bookingModalBookStage < 5 && ![-1].includes(bookingModalBookStage)" @click="goBack">←</a>
+        <a class="goback unselectable" v-if="bookingModalBookStage < 6 && ![-1].includes(bookingModalBookStage)" @click="goBack">←</a>
         <button class="continuebutton" @click="nextModalPage" v-if="!reviewMode" ref="continuebutton"><span v-if="bookingModalBookStage != 6">Continue</span><span v-else>DONE</span></button>
         <button class="continuebutton" @click="finishReviewing" v-else>Finish Reviewing This Section</button>
         <p style="color: red;" v-if="requiredFieldCheckFailed" class="fieldCheckText" ref="fieldCheckText">Please fill out all required fields</p>
@@ -168,7 +167,7 @@ export default {
         },
         checkSpecs() {
             this.closeModalAnimation()
-            this.$emit("viewSpecs")
+            setTimeout(this.$emit, 100, "viewSpecs")
         },
         closeModalEvent() {
             this.$emit('closebookingmodal')
