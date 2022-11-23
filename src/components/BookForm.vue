@@ -46,9 +46,8 @@
             <h3>Crew Members Needed</h3>
             <p>The amount of crew members needed, we have around 20 including 3 execs. Set to 0 for as many as possible.</p>
             <input type="number" name="CrewMembersNeeded" max="21" min="0" :value="this.crewMembersNeeded" ref="crewMembersNeeded">
-            <h3>Paid Job</h3>
-            <p>Tick the box if the crew members that will be present will be getting paid for their work. If you're an in-school
-                organization, you should probably leave the box unticked.</p>
+            <h3>Are You a Third Party Organization?</h3>
+            <p>Tick the box if you are a third-party organization.</p>
             <input type="checkbox" name="Paid Job" ref="paidJob" :checked="this.paidJob">
         </div>
         <!-- Additional Info -->
