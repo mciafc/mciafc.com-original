@@ -6,6 +6,8 @@
             <h2><a href="https://mciafc.com/equipment" target="__blank">Equipment Inventory</a></h2>
             <h2><a @click="notReadyYet">Stage Plan</a></h2>
             <h2><a @click="notReadyYet">Lighting & Sound Plot</a></h2>
+            <h2><a href="https://www.tdsb.on.ca/Community/Permits/Dates-and-Times-of-Use" target="__blank">TDSB Permit Policy</a></h2>
+            <p>We are under the TDSB, meaning we can not host any events during school hours. Please ensure your event falls within a timeframe where we are able to get a permit before booking.</p>
             <h2>Accessibility</h2>
             <p>Our auditorium is very accessible. The main entrances and the right side entrances are wheelchair accessible.</p>
             <!-- <h2>Storage</h2>
@@ -85,6 +87,7 @@ export default {
     .container {
         position: absolute;
         left: 5%;
+        width: 60%;
     }
     .closebutton {
         position: absolute;
