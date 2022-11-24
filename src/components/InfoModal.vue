@@ -2,6 +2,7 @@
     <div class="modal" ref="modal" v-if="infoModalOpenProp">
         <h1>{{ headerProp }}</h1>
         <p>{{ textProp }}</p>
+        <p v-if="textProp2 != ''">{{ textProp2 }}</p>
         <button @click="closeModalAnimation" class="closeButton">DONE</button>
     </div>
     <div class="darkenbackground" ref="darkenbackground" v-if="infoModalOpenProp" @click="closeModalAnimation"
@@ -16,6 +17,7 @@ export default {
         infoModalOpenProp: Boolean,
         headerProp: String,
         textProp: String,
+        textProp2: String,
     },
     emits: ["closeinfomodal"],
     methods: {
