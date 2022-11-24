@@ -2,7 +2,7 @@
   <div class="body" :class="{ noscroll: bookingModalOpen }" id="About" ref="about">
     <BookForm @viewSpecs="specsModalOpen = true" @closebookingmodal="closeBookingModal" :bookingModalOpenProp="bookingModalOpen"></BookForm>
     <TalentModal @closetalentmodal="closeTalentModal" :talentModalOpenProp="talentModalOpen" />
-    <InfoModal @closeinfomodal="closeInfoModal" :infoModalOpenProp="infoModalData.open" :headerProp="infoModalData.header" :textProp="infoModalData.text" />
+    <InfoModal @closeinfomodal="closeInfoModal" :infoModalOpenProp="infoModalData.open" :headerProp="infoModalData.header" :textProp="infoModalData.text" :textProp2="infoModalData.text2" />
     <SpecsModal :viewingSpecs="specsModalOpen" @closeSpecsModal="specsModalOpen = false" @notReadyYet="notReadyYet"/>
     <header class="header unselectable">
       <ul>
@@ -12,6 +12,9 @@
           </li>
           <li v-if="showTalentShowScreen">
             <p><a class="talent" href="/#Talent">Talent Show</a></p>
+          </li>
+          <li>
+            <p><a href="/#Upcoming">Upcoming Events</a></p>
           </li>
           <li>
             <p><a class="book" href="/#Book">Book</a></p>
@@ -55,6 +58,22 @@
           <img src="./assets/drumkit.png" class="backgroundimg2">
         </div>
       </div>
+      <div class="Screen section" id="Upcoming" ref="upcomingscreen">
+        <div class="typographybg" :class="{ oddtypographybg: aboutBoxIsOdd('upcomingscreen') }">
+          <h1 class="bigtypography unselectable" :class="{ oddtypography: aboutBoxIsOdd('upcomingscreen') }">UP COMING EVENTS</h1>
+        </div>
+        <div class="aboutbox selectable" :class="{ odd: aboutBoxIsOdd('upcomingscreen') }">
+          <h1 class="clubname">OUR UPCOMING SHOWS</h1>
+          <br>
+          <h2 class="gradient-text subheading2">CLICK SHOW FOR INFO</h2>
+          <CurrentBookings class="clubinfo" @moreInfo="showGigInfo" />
+          <!-- <button class="applybtn moveup">AUD SPECS</button> -->
+          <!-- <button class="applybtn" @click="openBookingModal">BOOK US</button> -->
+        </div>
+        <div class="backgroundimg2">
+          <img src="./assets/curtains.jpg" class="backgroundimg2">
+        </div>
+      </div>
       <div class="Screen section" id="Book" ref="bookscreen">
         <div class="typographybg" :class="{ oddtypographybg: aboutBoxIsOdd('bookscreen') }">
           <h1 class="bigtypography unselectable" :class="{ oddtypography: aboutBoxIsOdd('bookscreen') }">BOOK A VENUE</h1>
@@ -80,6 +99,7 @@ import BookForm from "./components/BookForm.vue"
 import InfoModal from "./components/InfoModal.vue"
 import TalentModal from "./components/TalentShowSignup.vue"
 import SpecsModal from "./components/SpecsModal.vue"
+import CurrentBookings from "./components/CurrentBookings.vue"
 
 export default {
   name: 'App',
@@ -87,7 +107,8 @@ export default {
     BookForm,
     InfoModal,
     TalentModal,
-    SpecsModal
+    SpecsModal,
+    CurrentBookings
   },
   data() {
     return {
@@ -110,6 +131,18 @@ export default {
         } else {
           return true
         }
+    },
+    showGigInfo(gig) {
+      this.infoModalData.open = true,
+      this.infoModalData.header = gig.gigName
+      let employeesNeeded
+      if (gig.employeesNeeded < 0) {
+        employeesNeeded = 'As many as possible'
+      } else {
+        employeesNeeded = gig.employeesNeeded
+      }
+      this.infoModalData.text = `Location: ${gig.gigLocation}`
+      this.infoModalData.text2 = `Minimum AFC Staff Needed: ${employeesNeeded}`
     },
     openBookingModal() {
       this.bookingModalOpen = true
@@ -136,6 +169,7 @@ export default {
     closeInfoModal() {
       this.infoModalData.open = false;
       this.preventScrolling = false
+      this.infoModalData.text2 = ""
     },
   }, 
   watch: {
