@@ -174,7 +174,7 @@ export default {
 </script>
 
 <style>
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-width: 800px) {
   .backgroundimg {
     display: none;
   }
@@ -207,49 +207,26 @@ export default {
   }
   .aboutbox {
     backdrop-filter: none !important;
-    background-color: #191919c0;
-    border-radius: 2rem;
-    backdrop-filter: blur(4px);
-    background-color: #191919c0;
-    border-radius: 2rem;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    transform: scale(0.8) !important;
     left: 0 !important;
     right: 0 !important;
-    line-height: 1.2;
     margin: auto !important;
-    padding: 0 !important;
-    padding-top: 25px !important;
-    padding-bottom: 25px !important;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    position: absolute;
-    text-align: center;
+    margin-bottom: 100px !important;
+    padding: 25px !important;
     top: 10% !important;
     width: 400px !important;
-    z-index: 10;
     height: 650px !important;
   }
 
-  /* .odd {
-    backdrop-filter: none !important;
-    background-color: #191919c0;
-    border-radius: 2rem;
-    backdrop-filter: blur(4px);
-    background-color: #191919c0;
-    border-radius: 2rem;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-    left: 0 !important;
+  .flex-container {
+    padding-bottom: 100px !important;
+  }
+
+  .aboutbox.odd {
     right: 0 !important;
-    line-height: 1.2;
+    left: 0 !important;
     margin: auto !important;
-    padding: 25px;
-    position: absolute;
-    text-align: center;
-    top: 10% !important;
-    width: 400px !important;
-    z-index: 10;
-    height: 650px !important;
-  } */
+  }
 
   .clubname {
     color: var(--mciafcorange);
@@ -260,26 +237,7 @@ export default {
     right: 0;
     top: 10px;
   }
-  /* .aboutbox2 {
-    backdrop-filter: none !important;
-    background-color: #191919c0;
-    border-radius: 2rem;
-    backdrop-filter: blur(4px);
-    background-color: #191919c0;
-    border-radius: 2rem;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-    left: 0 !important;
-    right: 0 !important;
-    line-height: 1.2;
-    margin: auto !important;
-    padding: 25px;
-    position: absolute;
-    text-align: center;
-    top: 10% !important;
-    width: 400px !important;
-    z-index: 10;
-    height: 650px !important;
-  } */
+
   .darkenbackground {
     z-index: 10000;
     width: 100%;
@@ -302,9 +260,10 @@ export default {
     right: 0;
     top: 0;
     bottom: 0;
+    scale: 0.8;
     text-align: center;
-    height: 750px;
-    width: 300px !important;
+    height: 90% !important;
+    width: 80% !important;
     background-color: #313131 !important;
     font-size: 16px;
     z-index: 20000000;
