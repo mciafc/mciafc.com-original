@@ -92,7 +92,7 @@
     </div>
     <div class="darkenbackground" ref="darkenbackground" v-if="talentModalOpenProp" @click="closeModalAnimation"
         :class="{ noscroll: talentModalOpenProp }"></div>
-    <a class="goback unselectable" v-if="talentModalPage < 4 && talentModalPage != 0 && talentModalOpenProp" @click="goBack">←</a>
+    <a class="goback unselectable mobile" v-if="talentModalPage < 4 && talentModalPage != 0 && talentModalOpenProp" @click="goBack">←</a>
     <p style="color: red;" v-if="requiredFieldCheckFailed && talentModalOpenProp" class="fieldCheckText mobile" ref="fieldCheckText">Please fill
             out all required fields</p>
     <button class="continuebutton mobile" @click="nextModalPage" v-if="reviewMode == false && talentModalOpenProp"  v-show="talentModalPage != 5" ref="continuebutton">Continue</button>
