@@ -325,8 +325,8 @@ export default {
   .fieldCheckText.mobile {
     position: fixed !important;
     /* transform: translateY(-115%) !important; */
-    display: block !important;
-    z-index: 45000000000;
+    display: inline-block !important;
+    z-index: 19999999;
     text-align: center;
     top: 3% !important;
   }
