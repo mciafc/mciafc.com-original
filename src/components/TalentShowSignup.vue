@@ -82,16 +82,22 @@
             <p>We will email you soon with your audition date, as well as any concerns we may have regarding equipment.</p>
         </div>
         <br>
-        <a class="goback unselectable" v-if="talentModalPage < 4 && talentModalPage != 0" @click="goBack">←</a>
-        <button class="continuebutton" @click="nextModalPage" v-if="!reviewMode"  v-show="talentModalPage != 5" ref="continuebutton">Continue</button>
-        <button class="continuebutton" @click="finishReviewing" v-else>Finish Reviewing This Section</button>
-        <button class="continuebutton" v-if="talentModalPage == 5" @click="closeModalAnimation">Done</button>
-        <p style="color: red;" v-if="requiredFieldCheckFailed" class="fieldCheckText" ref="fieldCheckText">Please fill
+        <a class="goback unselectable hidemobile" v-if="talentModalPage < 4 && talentModalPage != 0" @click="goBack">←</a>
+        <button class="continuebutton hidemobile" @click="nextModalPage" v-if="!reviewMode"  v-show="talentModalPage != 5" ref="continuebutton">Continue</button>
+        <button class="continuebutton hidemobile" @click="finishReviewing" v-else>Finish Reviewing This Section</button>
+        <button class="continuebutton hidemobile" v-if="talentModalPage == 5" @click="closeModalAnimation">Done</button>
+        <p style="color: red;" v-if="requiredFieldCheckFailed" class="fieldCheckText hidemobile" ref="fieldCheckText">Please fill
             out all required fields</p>
-        <p class="pagenumber" v-if="talentModalPage < 4">Page {{ talentModalPage + 1 }} / 4</p>
+        <p class="pagenumber hidemobile" v-if="talentModalPage < 4">Page {{ talentModalPage + 1 }} / 4</p>
     </div>
     <div class="darkenbackground" ref="darkenbackground" v-if="talentModalOpenProp" @click="closeModalAnimation"
         :class="{ noscroll: talentModalOpenProp }"></div>
+    <a class="goback unselectable" v-if="talentModalPage < 4 && talentModalPage != 0 && talentModalOpenProp" @click="goBack">←</a>
+    <p style="color: red;" v-if="requiredFieldCheckFailed && talentModalOpenProp" class="fieldCheckText mobile" ref="fieldCheckText">Please fill
+            out all required fields</p>
+    <button class="continuebutton mobile" @click="nextModalPage" v-if="reviewMode == false && talentModalOpenProp"  v-show="talentModalPage != 5" ref="continuebutton">Continue</button>
+    <button class="continuebutton mobile" @click="finishReviewing" v-else-if="reviewMode && talentModalOpenProp">Finish Reviewing This Section</button>
+    <button class="continuebutton mobile" v-if="talentModalPage == 5 && talentModalOpenProp" @click="closeModalAnimation">Done</button>
 </template>
 
 <script>
