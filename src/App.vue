@@ -171,7 +171,7 @@ export default {
       this.preventScrolling = false
       this.infoModalData.text2 = ""
     },
-  }, 
+  },
   watch: {
     preventScrolling: function() {
       if (this.preventScrolling) {
@@ -179,7 +179,7 @@ export default {
       } else {
         return [document.documentElement.style.overflow = 'auto', document.documentElement.style.overflowX = 'hidden']
       }
-    },    
+    },
   },
   mounted() {
       document.querySelectorAll("*").forEach((elem) => {
@@ -285,7 +285,7 @@ export default {
     left: 0;
   }
   .bookModal {
-    box-shadow:.8rem .8rem 1.4rem #151515, 
+    box-shadow:.8rem .8rem 1.4rem #151515,
                 -.2rem -.2rem 1.8rem #222222;
     animation: fade-in 300ms forwards ease-out;
     position: fixed;
@@ -294,19 +294,65 @@ export default {
     right: 0;
     top: 0;
     bottom: 0;
-    scale: 0.8;
+    /* scale: 0.8; */
     text-align: center;
-    height: 90% !important;
-    width: 80% !important;
+    height: 80% !important;
+    width: 100% !important;
     background-color: #313131 !important;
     font-size: 16px;
     z-index: 20000000;
-    padding: 20px;
-    padding-left: 75px;
-    padding-right: 75px;
+    padding: 0 !important;
+    /* padding-left: 75px;
+    padding-right: 75px; */
     border-radius: 3rem;
-    overflow: hidden;
+    overflow: auto !important;
   }
+  .continuebutton.hidemobile {
+    display: none !important;
+  }
+
+  .goback.hidemobile {
+    display: none !important;
+  }
+  .pagenumber.hidemobile {
+        display: none;
+    }
+
+  .fieldCheckText.hidemobile {
+    display: none;
+  }
+
+  .fieldCheckText.mobile {
+    position: fixed !important;
+    /* transform: translateY(-115%) !important; */
+    display: block !important;
+    z-index: 45000000000;
+    text-align: center;
+    top: 3% !important;
+  }
+
+  .continuebutton.mobile {
+    position: fixed !important;
+    transform: translateY(115%) !important;
+    display: block !important;
+    z-index: 45000000000;
+    bottom: -10 !important;
+  }
+  .goback.mobile {
+    position: fixed !important;
+    transform: translateX(-260%) !important;
+    display: block !important;
+    bottom: 1.5% !important;
+    z-index: 45000000001;
+  }
+  /* .pagenumber.mobile {
+    position: fixed !important;
+    transform: translateX(5000%);
+    bottom: 0;
+    right: -100px !important;
+    display: inline-block !important;
+    z-index: 45000000001;
+  } */
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;1,800&display=swap');
@@ -549,7 +595,7 @@ body {
 
 
 
-/* 
+/*
 .secondScreen {
   display: flex;
   margin: 0;

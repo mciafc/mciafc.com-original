@@ -80,13 +80,17 @@
             <p>Your request has been submitted to our team and will be reviewed. We will send an email to the contact email you specified soon regarding any information we have about your booking, such as, if we are available at that time, the price to rent us out, and more. If you have any questions, email execs@mciafc.com</p>
         </div>
         <br>
-        <a class="goback unselectable" v-if="bookingModalBookStage < 6 && ![-1].includes(bookingModalBookStage)" @click="goBack">←</a>
-        <button class="continuebutton" @click="nextModalPage" v-if="!reviewMode" ref="continuebutton"><span v-if="bookingModalBookStage != 6">Continue</span><span v-else>DONE</span></button>
-        <button class="continuebutton" @click="finishReviewing" v-else>Finish Reviewing This Section</button>
-        <p style="color: red;" v-if="requiredFieldCheckFailed" class="fieldCheckText" ref="fieldCheckText">Please fill out all required fields</p>
-        <p class="pagenumber" v-if="bookingModalBookStage != 6 && bookingModalBookStage != -1">Page {{ bookingModalBookStage + 1 }} / 6</p>
+        <a class="goback unselectable hidemobile" v-if="bookingModalBookStage < 6 && ![-1].includes(bookingModalBookStage)" @click="goBack">←</a>
+        <button class="continuebutton hidemobile" @click="nextModalPage" v-if="!reviewMode" ref="continuebutton"><span v-if="bookingModalBookStage != 6">Continue</span><span v-else>DONE</span></button>
+        <button class="continuebutton hidemobile" @click="finishReviewing" v-else>Finish Reviewing This Section</button>
+        <p style="color: red;" v-if="requiredFieldCheckFailed" class="fieldCheckText hidemobile" ref="fieldCheckText">Please fill out all required fields</p>
+        <p class="pagenumber hidemobile" v-if="bookingModalBookStage != 6 && bookingModalBookStage != -1">Page {{ bookingModalBookStage + 1 }} / 6</p>
     </div>
+    <p style="color: red;" v-if="requiredFieldCheckFailed && bookingModalOpenProp" class="fieldCheckText mobile" ref="fieldCheckText">Please fill out all required fields</p>
     <div class="darkenbackground" ref="darkenbackground" v-if="bookingModalOpenProp" @click="closeModalAnimation" :class="{ noscroll: bookingModalOpenProp }"></div>
+    <a class="goback unselectable mobile" v-if="bookingModalBookStage < 6 && ![-1].includes(bookingModalBookStage) && bookingModalOpenProp" @click="goBack">←</a>
+    <button class="continuebutton mobile" @click="nextModalPage" v-if="reviewMode == false && bookingModalOpenProp" ref="continuebutton"><span v-if="bookingModalBookStage != 6">Continue</span><span v-else>DONE</span></button>
+    <button class="continuebutton mobile" @click="finishReviewing" v-else-if="reviewMode && bookingModalOpenProp">Finish Reviewing This Section</button>
 </template>
 
 <script>
@@ -508,6 +512,16 @@ export default {
         left: 0;
         right: 0;
         bottom: 80px;
+    }
+    .continuebutton.mobile {
+        display: none;
+    }
+    .goback.mobile {
+        display: none;
+    }
+
+    .pagenumber.mobile {
+        display: none;
     }
 
     .pagenumber {
