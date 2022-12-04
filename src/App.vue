@@ -189,8 +189,7 @@ export default {
         })
       })
 
-      let keys = Object.keys(this.$refs)
-      this.orderOfScreens = keys
+      this.orderOfScreens = Object.keys(this.$refs)
   },
   computed: {
     showTalentShowScreen() {
