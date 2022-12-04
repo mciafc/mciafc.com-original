@@ -52,7 +52,7 @@
           <h2 class="gradient-text subheading2">Late December</h2>
           <p class="clubinfo">Our normal Winter Assembly has been replaced with a Talent Show! Click the button below to
             audition for an act!</p>
-          <button class="applybtn" @click="openTalentModal">GOT TALENT?</button>
+          <button class="applybtn" @click="openTalentModal" disabled="true">GOT TALENT?</button>
         </div>
         <div class="backgroundimg2">
           <img src="./assets/drumkit.png" class="backgroundimg2">
@@ -423,6 +423,7 @@ button:hover {
 
 button:disabled {
   cursor: not-allowed;
+  opacity: 0.5;
 }
 
 
